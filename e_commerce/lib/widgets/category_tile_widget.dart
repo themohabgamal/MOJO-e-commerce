@@ -9,8 +9,12 @@ import 'package:iconly/iconly.dart';
 class CategoryTileWidget extends StatelessWidget {
   CategoryResponseModel categoryResponseModel;
   HomeBloc homeBloc;
+  bool isHotDeal;
   CategoryTileWidget(
-      {super.key, required this.categoryResponseModel, required this.homeBloc});
+      {super.key,
+      required this.categoryResponseModel,
+      required this.homeBloc,
+      required this.isHotDeal});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class CategoryTileWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(10),
         width: 220,
-        height: 250,
+        height: 220,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15), color: Colors.white),
         child: Column(
@@ -39,11 +43,10 @@ class CategoryTileWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "BEST SELLER",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5
-                      ?.copyWith(fontSize: 15, color: MyTheme.mainColor),
+                  isHotDeal ? "HOT DEAL" : "BEST SELLER",
+                  style: Theme.of(context).textTheme.headline5?.copyWith(
+                      fontSize: 15,
+                      color: isHotDeal ? Colors.red : MyTheme.mainColor),
                 ),
                 SizedBox(height: 10),
                 Text(
@@ -54,24 +57,26 @@ class CategoryTileWidget extends StatelessWidget {
                       color: MyTheme.darkGreyColor),
                 ),
                 SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "\$ ${categoryResponseModel.price}",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-                    ),
-                    Row(
-                      children: [
-                        IconButton(
-                            onPressed: () {}, icon: Icon(IconlyLight.heart)),
-                        IconButton(
-                            onPressed: () {}, icon: Icon(IconlyLight.bag)),
-                      ],
-                    )
-                  ],
-                )
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "\$ ${categoryResponseModel.price}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 18),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {}, icon: Icon(IconlyLight.heart)),
+                          IconButton(
+                              onPressed: () {}, icon: Icon(IconlyLight.bag)),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ],
             ))
           ],

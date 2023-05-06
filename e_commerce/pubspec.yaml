@@ -41,6 +41,7 @@ dependencies:
   skeletons: ^0.0.3
   flutter_bloc: ^8.1.2
   readmore: ^2.2.0
+  fancy_shimmer_image: ^2.0.2
 
 dev_dependencies:
   flutter_test:

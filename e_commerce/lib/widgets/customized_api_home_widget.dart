@@ -18,7 +18,7 @@ class CustomizedApiHomeWidget extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 270,
+          height: 250,
           width: double.infinity,
           child: FutureBuilder(
             future: HomeCategoryRepo.getSpeceficCategory(category),
@@ -34,8 +34,10 @@ class CustomizedApiHomeWidget extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return CategoryTileWidget(
-                          homeBloc: homeBloc,
-                          categoryResponseModel: snapshot.data![index]);
+                        homeBloc: homeBloc,
+                        categoryResponseModel: snapshot.data![index],
+                        isHotDeal: false,
+                      );
                     },
                     separatorBuilder: (context, index) {
                       return SizedBox(width: 10);

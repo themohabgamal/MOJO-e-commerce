@@ -10,6 +10,12 @@ class NavigateToSingleProductEvent extends HomeEvent {
   NavigateToSingleProductEvent({required this.categoryResponseModel});
 }
 
+class NavigateToHotDealsEvent extends HomeEvent {}
+
+class GoBackEvent extends HomeEvent {}
+
 class AddToCartEvent extends HomeEvent {}
 
 class AddToWishlistEvent extends HomeEvent {}
+
+class HotDealsLoadedEvent extends HomeEvent {}

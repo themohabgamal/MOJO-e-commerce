@@ -15,20 +15,24 @@ class HomeCategoryRepo {
         final jsonData = json.decode(data.body);
         for (var product in jsonData) {
           products.add(CategoryResponseModel.fromJson(product));
-          print(products);
         }
         return products;
       }
     }).catchError((error) => print(error));
-    // var url =
-    //     Uri.parse('https://fakestoreapi.com/products/category/${category}');
-    // var response = await http.get(url);
-    // if (response.statusCode == 200) {
-    //   print("success");
-    //   var jsonData = jsonDecode(response.body);
-    //   return CategoryResponseModel.fromJson(jsonData);
-    // } else {
-    //   throw "error";
-    // }
+  }
+
+  static Future<List<CategoryResponseModel>?> getAllProcuts() {
+    return http
+        .get(Uri.parse("https://fakestoreapi.com/products"))
+        .then((data) {
+      final products = <CategoryResponseModel>[];
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+        for (var product in jsonData) {
+          products.add(CategoryResponseModel.fromJson(product));
+        }
+        return products;
+      }
+    }).catchError((error) => print(error));
   }
 }

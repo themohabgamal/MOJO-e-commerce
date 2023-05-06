@@ -8,9 +8,6 @@ import 'package:readmore/readmore.dart';
 
 class SingleProductPage extends StatelessWidget {
   static const String routeName = 'singleProdPage';
-
-  // CategoryResponseModel? categoryResponseModel;
-  // HomeBloc homeBloc = HomeBloc();
   SingleProductPage({super.key});
 
   @override
@@ -24,7 +21,7 @@ class SingleProductPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(IconlyLight.arrow_left_2, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context);
+            args.homeBloc.add(GoBackEvent());
           },
         ),
         actions: [
@@ -81,7 +78,7 @@ class SingleProductPage extends StatelessWidget {
                     .textTheme
                     .subtitle1
                     ?.copyWith(color: MyTheme.darkGreyColor),
-                trimLines: 2,
+                trimLines: 4,
                 colorClickableText: MyTheme.mainColor,
                 lessStyle: TextStyle(
                     fontSize: 14,
@@ -102,7 +99,7 @@ class SingleProductPage extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(12.0),
         child: BottomAppBar(
-            color: Colors.transparent,
+            color: Colors.amber,
             elevation: 0,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

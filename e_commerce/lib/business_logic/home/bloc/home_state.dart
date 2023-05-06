@@ -15,7 +15,18 @@ class HomeErrorState extends HomeState {}
 
 class NavigateToCartState extends HomeActionState {}
 
+class NavigateToHotDealsState extends HomeActionState {}
+
+class GoBackState extends HomeActionState {}
+
 class NavigateToSingleProductState extends HomeActionState {
   CategoryResponseModel categoryResponseModel;
   NavigateToSingleProductState({required this.categoryResponseModel});
+}
+
+class HotDealsLoadingState extends HomeState {}
+
+class HotDealsLoadedState extends HomeState {
+  List<CategoryResponseModel> list;
+  HotDealsLoadedState({required this.list});
 }

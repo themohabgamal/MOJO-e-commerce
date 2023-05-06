@@ -1,6 +1,7 @@
 import 'package:e_commerce/nav_switcher.dart';
 import 'package:e_commerce/presentation/cart/cart_screen.dart';
 import 'package:e_commerce/presentation/home/home_screen.dart';
+import 'package:e_commerce/presentation/home/hot_deals_page.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/single_product_page.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         NavSwitcher.routeName: (context) => const NavSwitcher(),
         CartScreen.routeName: (context) => const CartScreen(),
         SingleProductPage.routeName: (context) => SingleProductPage(),
+        HotDealsPage.routeName: (context) => HotDealsPage(),
       },
       initialRoute: NavSwitcher.routeName,
     );

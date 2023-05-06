@@ -26,6 +26,7 @@ class _NavSwitcherState extends State<NavSwitcher> {
     return Scaffold(
       body: screens[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: selectedIndex,
           onTap: (value) {
             setState(() {
@@ -46,7 +47,7 @@ class _NavSwitcherState extends State<NavSwitcher> {
               label: "notifications",
             ),
             const BottomNavigationBarItem(
-              icon: Icon(IconlyLight.user),
+              icon: Icon(IconlyLight.profile),
               label: "User",
             ),
           ]),
