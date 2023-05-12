@@ -46,9 +46,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 arguments: CategoriesToSingleProductArgs(
                     categoriesBloc: categoriesBloc,
                     categoryResponseModel: state.categoryResponseModel));
-          }
-          if (state is CategoriesNavigateBackState) {
+          } else if (state is CategoriesNavigateBackState) {
             Navigator.pop(context);
+          } else if (state is CategoriesAddToCartState) {
+            print("item added to cart");
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Item was added to cart",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+              backgroundColor: MyTheme.mainColor,
+              duration: Duration(seconds: 1),
+            ));
           }
         },
         builder: (context, state) {

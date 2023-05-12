@@ -29,10 +29,9 @@ class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
     cartBloc.add(CartInitialEvent());
-
-    delivery = 100;
-    totalCost = subTotal + delivery;
-    print(subTotal);
+    if (CartScreen.cartList.isNotEmpty) {
+      cartBloc.add(CartLoadEvent());
+    }
     super.initState();
   }
 
@@ -69,6 +68,22 @@ class _CartScreenState extends State<CartScreen> {
         },
         builder: (context, state) {
           switch (state.runtimeType) {
+            case CartInitial:
+              return Center(
+                child: Column(
+                  children: [
+                    Image.asset(
+                      "assets/images/empty-folder.png",
+                      width: 200,
+                    ),
+                    Text(
+                      "Looks like your cart is empty, \n please add items to show here",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline5,
+                    )
+                  ],
+                ),
+              );
             case CartSuccessState:
               return SizedBox(
                   child: ListView.separated(

@@ -11,6 +11,7 @@ part 'cart_state.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(CartInitial()) {
     on<CartInitialEvent>(cartInitialEvent);
+    on<CartLoadEvent>(cartLoadEvent);
     on<NavigateBackEvent>(goBackEvent);
     on<GoToCartSingleProductEvent>(goToCartSingleProductEvent);
     on<GetNewSubTotalEvent>(getNewSubTotalEvent);
@@ -18,6 +19,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   FutureOr<void> cartInitialEvent(
       CartInitialEvent event, Emitter<CartState> emit) {
+    emit(CartInitial());
+  }
+
+  FutureOr<void> cartLoadEvent(CartLoadEvent event, Emitter<CartState> emit) {
     emit(CartSuccessState(cartList: CartScreen.cartList));
   }
 

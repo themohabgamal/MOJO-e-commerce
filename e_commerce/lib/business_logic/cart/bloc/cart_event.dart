@@ -5,6 +5,8 @@ abstract class CartEvent {}
 
 class CartInitialEvent extends CartEvent {}
 
+class CartLoadEvent extends CartEvent {}
+
 class NavigateBackEvent extends CartEvent {}
 
 class CartNavigateToSingleProductEvent extends CartEvent {

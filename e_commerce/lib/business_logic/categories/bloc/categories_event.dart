@@ -3,6 +3,8 @@ part of 'categories_bloc.dart';
 @immutable
 abstract class CategoriesEvent {}
 
+class CartInitialEvent extends CategoriesEvent {}
+
 class CategoriesNavigateToSingleProductPageEvent extends CategoriesEvent {
   CategoryResponseModel categoryResponseModel;
   CategoriesNavigateToSingleProductPageEvent(

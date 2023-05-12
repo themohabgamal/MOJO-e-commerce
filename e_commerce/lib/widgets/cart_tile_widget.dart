@@ -80,22 +80,6 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                widget.cartBloc.add(
-                                    GetNewSubTotalEvent(quantity: quantity));
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(2),
-                                decoration: BoxDecoration(
-                                    color: Colors.cyanAccent,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
                                 setState(() {
                                   quantity++;
                                 });

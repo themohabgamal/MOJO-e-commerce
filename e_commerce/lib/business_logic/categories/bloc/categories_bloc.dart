@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
+import 'package:e_commerce/presentation/cart/cart_screen.dart';
 import 'package:meta/meta.dart';
 
 part 'categories_event.dart';
@@ -12,6 +13,7 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
     on<CategoriesNavigateToSingleProductPageEvent>(
         categoriesNavigateToSingleProductPageEvent);
     on<CategoriesNavigateBackEvent>(categoriesNavigateBackEvent);
+    on<CategoriesAddToCartEvent>(categoriesAddToCartEvent);
   }
 
   FutureOr<void> categoriesNavigateToSingleProductPageEvent(
@@ -24,5 +26,12 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   FutureOr<void> categoriesNavigateBackEvent(
       CategoriesNavigateBackEvent event, Emitter<CategoriesState> emit) {
     emit(CategoriesNavigateBackState());
+  }
+
+  FutureOr<void> categoriesAddToCartEvent(
+      CategoriesAddToCartEvent event, Emitter<CategoriesState> emit) {
+    CartScreen.cartList.add(event.categoryResponseModel);
+
+    emit(CategoriesAddToCartState());
   }
 }
