@@ -2,12 +2,11 @@
 
 import 'package:e_commerce/presentation/cart/cart_screen.dart';
 import 'package:e_commerce/presentation/home/hot_deals_page.dart';
+import 'package:e_commerce/presentation/wishlist/wish_list_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/category_name_widget.dart';
 import 'package:e_commerce/widgets/customized_api_home_widget.dart';
-import 'package:e_commerce/widgets/filter_widget.dart';
 import 'package:e_commerce/widgets/home_single_product_args.dart';
-import 'package:e_commerce/widgets/search_bar_widget.dart';
 import 'package:e_commerce/widgets/single_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
       buildWhen: (previous, current) => current is! HomeActionState,
       listener: (context, state) {
         if (state is NavigateToCartState) {
-          Navigator.pushNamed(context, CartScreen.routeName);
+          Navigator.pushNamed(context, CartScreen.routeName,
+              arguments: homeBloc);
         } else if (state is NavigateToSingleProductState) {
           Navigator.pushNamed(context, SingleProductPage.routeName,
               arguments: HomeToSingleProductArgs(
@@ -51,14 +51,28 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.pushNamed(context, HotDealsPage.routeName,
               arguments: homeBloc);
           homeBloc.add(HotDealsLoadedEvent());
+        } else if (state is NavigateToWishlistState) {
+          Navigator.pushNamed(context, WishListScreen.routeName);
         } else if (state is GoBackState) {
           Navigator.pop(context);
+        } else if (state is AddToCartState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              "Item was added to cart",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+            backgroundColor: MyTheme.mainColor,
+            duration: Duration(seconds: 1),
+          ));
         }
       },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text("MOJO"),
+            title: const Text(
+              "MOJO",
+              style: TextStyle(fontSize: 30),
+            ),
             centerTitle: true,
             leading: IconButton(
               icon: Image.asset("assets/images/menu.png", width: 30),
@@ -67,13 +81,22 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: [
               IconButton(
                 icon: Image.asset(
+                  "assets/images/favourite.png",
+                  width: 25,
+                ),
+                onPressed: () {
+                  homeBloc.add(NavigateToWishlistEvent());
+                },
+              ),
+              IconButton(
+                icon: Image.asset(
                   "assets/images/bag.png",
-                  width: 30,
+                  width: 25,
                 ),
                 onPressed: () {
                   homeBloc.add(NavigateToCartEvent());
                 },
-              )
+              ),
             ],
           ),
           //*-------------------------------------------------------------body------------------------------------------------
@@ -85,13 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     const SizedBox(
                       height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(child: SearchBarWidget()),
-                        FilterWidget()
-                      ],
                     ),
                     SizedBox(height: 20),
                     Text(

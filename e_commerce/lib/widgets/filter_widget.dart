@@ -14,7 +14,7 @@ class FilterWidget extends StatelessWidget {
       decoration: BoxDecoration(
           boxShadow: [],
           borderRadius: BorderRadius.circular(50),
-          color: MyTheme.mainColor),
+          color: Colors.indigo),
       child: IconButton(
         icon: Image.asset("assets/images/filter.png", color: Colors.white),
         onPressed: () {},

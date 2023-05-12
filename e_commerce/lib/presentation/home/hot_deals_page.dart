@@ -1,10 +1,12 @@
 import 'package:e_commerce/business_logic/home/bloc/home_bloc.dart';
+import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/category_tile_widget.dart';
 import 'package:e_commerce/widgets/product_loading_tile_widget.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HotDealsPage extends StatefulWidget {
   const HotDealsPage({super.key});
@@ -27,7 +29,7 @@ class _HotDealsPageState extends State<HotDealsPage> {
             },
           ),
           centerTitle: true,
-          title: Text("Hot Deals")),
+          title: Text("HOT DEALS")),
       body: BlocConsumer<HomeBloc, HomeState>(
         bloc: homeBloc,
         buildWhen: (previous, current) => current is! HomeActionState,
@@ -64,7 +66,12 @@ class _HotDealsPageState extends State<HotDealsPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: FancyShimmerImage(imageUrl: "imageUrl")),
+                      child: Center(
+                        child: LoadingAnimationWidget.bouncingBall(
+                          color: MyTheme.darkGreyColor,
+                          size: 50,
+                        ),
+                      )),
                 );
               },
             );

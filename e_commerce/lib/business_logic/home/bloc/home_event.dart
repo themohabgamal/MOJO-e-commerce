@@ -5,6 +5,8 @@ abstract class HomeEvent {}
 
 class NavigateToCartEvent extends HomeEvent {}
 
+class NavigateToWishlistEvent extends HomeEvent {}
+
 class NavigateToSingleProductEvent extends HomeEvent {
   CategoryResponseModel categoryResponseModel;
   NavigateToSingleProductEvent({required this.categoryResponseModel});
@@ -14,8 +16,14 @@ class NavigateToHotDealsEvent extends HomeEvent {}
 
 class GoBackEvent extends HomeEvent {}
 
-class AddToCartEvent extends HomeEvent {}
+class HomeAddToCartEvent extends HomeEvent {
+  CategoryResponseModel categoryResponseModel;
+  HomeAddToCartEvent({required this.categoryResponseModel});
+}
 
-class AddToWishlistEvent extends HomeEvent {}
+class HomeAddToWishlistEvent extends HomeEvent {
+  CategoryResponseModel categoryResponseModel;
+  HomeAddToWishlistEvent({required this.categoryResponseModel});
+}
 
 class HotDealsLoadedEvent extends HomeEvent {}

@@ -1,4 +1,6 @@
+import 'package:e_commerce/theming/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ProductLoadingTileWidget extends StatelessWidget {
   const ProductLoadingTileWidget({super.key});
@@ -12,11 +14,17 @@ class ProductLoadingTileWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           return Container(
             margin: EdgeInsets.all(10),
-            width: 220,
+            width: 180,
             height: 250,
             decoration: BoxDecoration(
-                color: Colors.grey.withAlpha(80),
+                color: Colors.grey.withAlpha(30),
                 borderRadius: BorderRadius.circular(15)),
+            child: Center(
+              child: LoadingAnimationWidget.halfTriangleDot(
+                color: MyTheme.mainColor,
+                size: 50,
+              ),
+            ),
           );
         },
       ),

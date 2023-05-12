@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
+import 'package:e_commerce/presentation/cart/cart_screen.dart';
+import 'package:e_commerce/presentation/wishlist/wish_list_screen.dart';
 import 'package:e_commerce/repositories/home_category_repo.dart';
 import 'package:meta/meta.dart';
 
@@ -15,6 +17,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<NavigateToHotDealsEvent>(navigateToHotDealsEvent);
     on<GoBackEvent>(goBackEvent);
     on<HotDealsLoadedEvent>(hotDealsLoadedEvent);
+    on<NavigateToWishlistEvent>(navigateToWishlistEvent);
+    on<HomeAddToCartEvent>(addToCartEvent);
+    on<HomeAddToWishlistEvent>(addToWishlistEvent);
   }
 
   FutureOr<void> navigateToCartEvent(
@@ -42,5 +47,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HotDealsLoadingState());
     var response = await HomeCategoryRepo.getAllProcuts();
     emit(HotDealsLoadedState(list: response!));
+  }
+
+  FutureOr<void> navigateToWishlistEvent(
+      NavigateToWishlistEvent event, Emitter<HomeState> emit) {
+    emit(NavigateToWishlistState());
+  }
+
+  FutureOr<void> addToCartEvent(
+      HomeAddToCartEvent event, Emitter<HomeState> emit) {
+    CartScreen.cartList.add(event.categoryResponseModel);
+    emit(AddToCartState());
+  }
+
+  FutureOr<void> addToWishlistEvent(
+      HomeAddToWishlistEvent event, Emitter<HomeState> emit) {
+    WishListScreen.wishListList.add(event.categoryResponseModel);
+    emit(AddToWishlistState());
   }
 }

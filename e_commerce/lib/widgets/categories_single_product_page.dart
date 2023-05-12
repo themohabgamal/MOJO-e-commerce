@@ -1,26 +1,27 @@
+import 'package:e_commerce/business_logic/categories/bloc/categories_bloc.dart';
 import 'package:e_commerce/business_logic/home/bloc/home_bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
 import 'package:e_commerce/theming/theme.dart';
+import 'package:e_commerce/widgets/categories_single_product_args.dart';
 import 'package:e_commerce/widgets/home_single_product_args.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:readmore/readmore.dart';
 
-class SingleProductPage extends StatelessWidget {
-  static const String routeName = 'singleProdPage';
-  SingleProductPage({super.key});
+class CategoriesSingleProductPage extends StatelessWidget {
+  static const String routeName = 'CategorySingleProdPage';
 
   @override
   Widget build(BuildContext context) {
-    final args =
-        ModalRoute.of(context)?.settings.arguments as HomeToSingleProductArgs;
+    final args = ModalRoute.of(context)?.settings.arguments
+        as CategoriesToSingleProductArgs;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
           icon: Icon(IconlyLight.arrow_left_2, color: Colors.black),
           onPressed: () {
-            args.homeBloc.add(GoBackEvent());
+            args.categoriesBloc.add(CategoriesNavigateBackEvent());
           },
         ),
         actions: [
@@ -30,7 +31,8 @@ class SingleProductPage extends StatelessWidget {
               width: 30,
             ),
             onPressed: () {
-              args.homeBloc.add(NavigateToCartEvent());
+              args.categoriesBloc.add(CategoriesAddToCartEvent(
+                  categoryResponseModel: args.categoryResponseModel));
             },
           )
         ],
@@ -43,13 +45,13 @@ class SingleProductPage extends StatelessWidget {
             children: [
               SizedBox(height: 20),
               Text(
-                "${args.categoryResponseModel?.title}",
+                "${args.categoryResponseModel.title}",
                 style: Theme.of(context).textTheme.headline4?.copyWith(
                     color: Colors.black, fontWeight: FontWeight.w600),
               ),
               SizedBox(height: 10),
               Text(
-                "${args.categoryResponseModel?.category}",
+                "${args.categoryResponseModel.category}",
                 style: Theme.of(context).textTheme.headline6?.copyWith(
                     fontSize: 22,
                     color: MyTheme.darkGreyColor,
@@ -57,14 +59,14 @@ class SingleProductPage extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Image.network(
-                "${args.categoryResponseModel?.image}",
+                "${args.categoryResponseModel.image}",
                 width: double.infinity,
                 height: 300,
                 fit: BoxFit.contain,
               ),
               SizedBox(height: 10),
               Text(
-                "\$ ${args.categoryResponseModel?.price}",
+                "\$ ${args.categoryResponseModel.price}",
                 style: Theme.of(context).textTheme.subtitle2?.copyWith(
                     fontSize: 28,
                     color: Colors.black,
@@ -72,7 +74,7 @@ class SingleProductPage extends StatelessWidget {
               ),
               SizedBox(height: 10),
               ReadMoreText(
-                "${args.categoryResponseModel?.description}",
+                "${args.categoryResponseModel.description}",
                 style: Theme.of(context)
                     .textTheme
                     .subtitle1

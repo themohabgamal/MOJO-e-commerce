@@ -4,15 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTheme {
   static const mainColor = Color(0xFF0D6EFD);
   static const darkGreyColor = Color(0xFF6A6A6A);
-  static const lighterColor = Color(0xFFF7F7F9);
+  static const lighterColor = Color.fromARGB(255, 247, 247, 247);
   static const darkColor = Color.fromARGB(255, 37, 37, 37);
   static const orangeColor = Color(0xFFFf4c24);
   static final lightTheme = ThemeData(
       appBarTheme: AppBarTheme(
         backgroundColor: lighterColor,
         elevation: 0,
+        centerTitle: true,
         titleTextStyle: GoogleFonts.raleway(
-            fontSize: 30, fontWeight: FontWeight.w600, color: darkColor),
+            fontSize: 16, fontWeight: FontWeight.w600, color: darkColor),
       ),
       scaffoldBackgroundColor: lighterColor,
       textTheme: TextTheme(

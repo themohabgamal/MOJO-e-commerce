@@ -42,6 +42,8 @@ dependencies:
   flutter_bloc: ^8.1.2
   readmore: ^2.2.0
   fancy_shimmer_image: ^2.0.2
+  loading_animation_widget: ^1.2.0+4
+  flutter_slidable: ^2.0.0
 
 dev_dependencies:
   flutter_test:
