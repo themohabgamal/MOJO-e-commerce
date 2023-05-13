@@ -1,5 +1,6 @@
 import 'package:e_commerce/business_logic/wishlist/bloc/wishlist_bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
+import 'package:e_commerce/presentation/cart/cart_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/cart_single_product_args.dart';
 import 'package:e_commerce/widgets/cart_single_product_page.dart';
@@ -39,6 +40,11 @@ class WishListScreen extends StatelessWidget {
                   arguments: CartToSingleProductPageArgs(
                       categoryResponseModel: state.categoryResponseModel,
                       wishlistBloc: wishlistBloc));
+            } else if (state is WishlistAddToCartState) {
+              Navigator.pushNamed(
+                context,
+                CartScreen.routeName,
+              );
             }
           },
           builder: (context, state) {

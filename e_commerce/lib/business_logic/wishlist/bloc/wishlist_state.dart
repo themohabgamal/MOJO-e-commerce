@@ -16,6 +16,8 @@ class WishlistRemoveItemState extends WishlistState {}
 
 class WishlistNavigateBackState extends WishlistActionState {}
 
+class WishlistAddToCartState extends WishlistActionState {}
+
 class WishlistNavigateToSingleProductState extends WishlistActionState {
   CategoryResponseModel categoryResponseModel;
   WishlistNavigateToSingleProductState({required this.categoryResponseModel});

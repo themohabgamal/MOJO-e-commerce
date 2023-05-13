@@ -1,6 +1,5 @@
 import 'package:e_commerce/business_logic/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce/business_logic/wishlist/bloc/wishlist_bloc.dart';
-import 'package:e_commerce/models/category_response_model.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/cart_single_product_args.dart';
 import 'package:flutter/material.dart';
@@ -102,32 +101,36 @@ class CartSingleProductPage extends StatelessWidget {
                 SizedBox(
                   width: 1,
                 ),
-                Container(
-                    width: 200,
-                    height: 70,
-                    decoration: BoxDecoration(
-                        color: MyTheme.mainColor,
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              IconlyLight.bag,
-                              size: 30,
-                              color: Colors.white,
+                args.wishlistBloc != null
+                    ? GestureDetector(
+                        onTap: () {
+                          args.wishlistBloc?.add(WishlistAddToCartEvent(
+                              categoryResponseModel:
+                                  args.categoryResponseModel));
+                        },
+                        child: Container(
+                            width: 200,
+                            height: 70,
+                            decoration: BoxDecoration(
+                                color: MyTheme.mainColor,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  IconlyLight.bag,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
+                                Text("Add To Cart",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline5
+                                        ?.copyWith(color: Colors.white))
+                              ],
                             )),
-                        Text(
-                            args.wishlistBloc != null
-                                ? "Add To Cart"
-                                : "Buy This Item",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline5
-                                ?.copyWith(color: Colors.white))
-                      ],
-                    )),
+                      )
+                    : SizedBox()
               ],
             )),
       ),

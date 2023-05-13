@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
+import 'package:e_commerce/presentation/cart/cart_screen.dart';
 import 'package:e_commerce/presentation/wishlist/wish_list_screen.dart';
 import 'package:meta/meta.dart';
 
@@ -15,6 +16,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
     on<WishlistNavigateBackEvent>(wishlistNavigateBackEvent);
     on<WishlistNavigateToSingleProductEvent>(
         wishlistNavigateToSingleProductEvent);
+    on<WishlistAddToCartEvent>(wishlistAddToCartEvent);
   }
 
   FutureOr<void> wishlistRemoveItemEvent(
@@ -37,5 +39,11 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
       WishlistNavigateToSingleProductEvent event, Emitter<WishlistState> emit) {
     emit(WishlistNavigateToSingleProductState(
         categoryResponseModel: event.categoryResponseModel));
+  }
+
+  FutureOr<void> wishlistAddToCartEvent(
+      WishlistAddToCartEvent event, Emitter<WishlistState> emit) {
+    CartScreen.cartList.add(event.categoryResponseModel);
+    emit(WishlistAddToCartState());
   }
 }

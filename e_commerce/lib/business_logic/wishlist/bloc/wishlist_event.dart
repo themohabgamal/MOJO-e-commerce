@@ -12,6 +12,11 @@ class WishlistRemoveItemEvent extends WishlistEvent {
 
 class WishlistNavigateBackEvent extends WishlistEvent {}
 
+class WishlistAddToCartEvent extends WishlistEvent {
+  CategoryResponseModel categoryResponseModel;
+  WishlistAddToCartEvent({required this.categoryResponseModel});
+}
+
 class WishlistNavigateToSingleProductEvent extends WishlistEvent {
   CategoryResponseModel categoryResponseModel;
   WishlistNavigateToSingleProductEvent({required this.categoryResponseModel});
