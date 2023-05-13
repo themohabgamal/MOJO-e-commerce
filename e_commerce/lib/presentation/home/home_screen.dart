@@ -58,7 +58,16 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (state is AddToCartState) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              "Item was added to cart",
+              "Item was added to your cart",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
+            backgroundColor: MyTheme.mainColor,
+            duration: Duration(seconds: 1),
+          ));
+        } else if (state is AddToWishlistState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              "Item was added to your wishlist",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
             ),
             backgroundColor: MyTheme.mainColor,

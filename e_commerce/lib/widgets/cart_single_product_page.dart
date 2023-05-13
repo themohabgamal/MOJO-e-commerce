@@ -1,4 +1,5 @@
 import 'package:e_commerce/business_logic/cart/bloc/cart_bloc.dart';
+import 'package:e_commerce/business_logic/wishlist/bloc/wishlist_bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/cart_single_product_args.dart';
@@ -20,7 +21,11 @@ class CartSingleProductPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(IconlyLight.arrow_left_2, color: Colors.black),
           onPressed: () {
-            args.cartBloc.add(NavigateBackEvent());
+            if (args.wishlistBloc != null) {
+              args.wishlistBloc?.add(WishlistNavigateBackEvent());
+            } else {
+              args.cartBloc?.add(NavigateBackEvent());
+            }
           },
         ),
       ),
@@ -113,7 +118,10 @@ class CartSingleProductPage extends StatelessWidget {
                               size: 30,
                               color: Colors.white,
                             )),
-                        Text("Buy this item",
+                        Text(
+                            args.wishlistBloc != null
+                                ? "Add To Cart"
+                                : "Buy This Item",
                             style: Theme.of(context)
                                 .textTheme
                                 .headline5

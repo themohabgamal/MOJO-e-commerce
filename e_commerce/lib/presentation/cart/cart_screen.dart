@@ -71,15 +71,19 @@ class _CartScreenState extends State<CartScreen> {
             case CartInitial:
               return Center(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      "assets/images/empty-folder.png",
+                      "assets/images/box.png",
                       width: 200,
                     ),
-                    Text(
-                      "Looks like your cart is empty, \n please add items to show here",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline5,
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(
+                        "Looks like your cart is empty, \n please add items to show here",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
                     )
                   ],
                 ),
