@@ -1,5 +1,5 @@
 import 'package:e_commerce/nav_switcher.dart';
-import 'package:e_commerce/presentation/cart/cart_screen.dart';
+import 'package:e_commerce/presentation/boarding/on_boarding_screen.dart';
 import 'package:e_commerce/presentation/home/home_screen.dart';
 import 'package:e_commerce/presentation/home/hot_deals_page.dart';
 import 'package:e_commerce/presentation/wishlist/wish_list_screen.dart';
@@ -25,15 +25,15 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.routeName: (context) => const HomeScreen(),
         NavSwitcher.routeName: (context) => const NavSwitcher(),
-        CartScreen.routeName: (context) => CartScreen(),
         SingleProductPage.routeName: (context) => SingleProductPage(),
         CartSingleProductPage.routeName: (context) => CartSingleProductPage(),
         HotDealsPage.routeName: (context) => HotDealsPage(),
         WishListScreen.routeName: (context) => WishListScreen(),
         CategoriesSingleProductPage.routeName: (context) =>
             CategoriesSingleProductPage(),
+        OnBoardingScreen.routeName: (context) => OnBoardingScreen(),
       },
-      initialRoute: NavSwitcher.routeName,
+      initialRoute: OnBoardingScreen.routeName,
     );
   }
 }

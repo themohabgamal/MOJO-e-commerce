@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_return_type_for_catch_error
+
 import 'dart:convert';
 
 import 'package:e_commerce/models/category_response_model.dart';

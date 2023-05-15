@@ -39,12 +39,9 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Cart"),
-        leading: IconButton(
-          icon: Icon(IconlyLight.arrow_left_2, color: Colors.black),
-          onPressed: () {
-            cartBloc.add(NavigateBackEvent());
-          },
+        title: Text(
+          "My Cart",
+          style: Theme.of(context).textTheme.headline5,
         ),
       ),
       body: BlocConsumer<CartBloc, CartState>(
@@ -73,10 +70,9 @@ class _CartScreenState extends State<CartScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "assets/images/box.png",
-                      width: 200,
-                    ),
+                    SizedBox(
+                        height: 250,
+                        child: Image.asset("assets/images/empty-cart.png")),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Text(

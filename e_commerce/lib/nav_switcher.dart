@@ -1,5 +1,5 @@
+import 'package:e_commerce/presentation/cart/cart_screen.dart';
 import 'package:e_commerce/presentation/home/home_screen.dart';
-import 'package:e_commerce/presentation/notifications/notifications_screen.dart';
 import 'package:e_commerce/presentation/user/user_screen.dart';
 import 'package:e_commerce/presentation/categories/categories_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class _NavSwitcherState extends State<NavSwitcher> {
   List<Widget> screens = [
     const HomeScreen(),
     CategoriesScreen(),
-    NotificationScreen(),
+    CartScreen(),
     UserScreen()
   ];
   @override
@@ -35,16 +35,16 @@ class _NavSwitcherState extends State<NavSwitcher> {
           },
           items: [
             const BottomNavigationBarItem(
-              icon: Icon(IconlyLight.home),
-              label: "Home",
-            ),
+                icon: Icon(IconlyLight.home),
+                label: "Home",
+                backgroundColor: Colors.black),
             const BottomNavigationBarItem(
               icon: Icon(IconlyLight.category),
               label: "Wishlist",
             ),
             const BottomNavigationBarItem(
-              icon: Icon(IconlyLight.notification),
-              label: "notifications",
+              icon: Icon(IconlyLight.bag),
+              label: "cart",
             ),
             const BottomNavigationBarItem(
               icon: Icon(IconlyLight.profile),

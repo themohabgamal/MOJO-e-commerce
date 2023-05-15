@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             centerTitle: true,
             leading: IconButton(
-              icon: Image.asset("assets/images/menu.png", width: 30),
+              icon: Image.asset("assets/images/menu-bar (1).png", width: 40),
               onPressed: () {},
             ),
             actions: [
@@ -97,15 +97,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   homeBloc.add(NavigateToWishlistEvent());
                 },
               ),
-              IconButton(
-                icon: Image.asset(
-                  "assets/images/bag.png",
-                  width: 25,
-                ),
-                onPressed: () {
-                  homeBloc.add(NavigateToCartEvent());
-                },
-              ),
             ],
           ),
           //*-------------------------------------------------------------body------------------------------------------------
@@ -115,9 +106,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
                     SizedBox(height: 20),
                     Text(
                       "Select Category",

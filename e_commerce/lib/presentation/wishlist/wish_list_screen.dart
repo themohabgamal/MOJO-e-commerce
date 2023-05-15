@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:e_commerce/business_logic/wishlist/bloc/wishlist_bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
 import 'package:e_commerce/presentation/cart/cart_screen.dart';
@@ -97,10 +99,13 @@ class WishListScreen extends StatelessWidget {
                       "assets/images/box.png",
                       width: 200,
                     ),
-                    Text(
-                      "Looks like your wishlist is empty, \n please add items to show here",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline5,
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        "Looks like your wishlist is empty, \n please add items to show here",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
                     )
                   ],
                 ),

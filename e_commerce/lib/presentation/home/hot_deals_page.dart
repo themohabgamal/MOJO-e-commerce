@@ -1,8 +1,8 @@
+// ignore_for_file: unnecessary_cast
+
 import 'package:e_commerce/business_logic/home/bloc/home_bloc.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/category_tile_widget.dart';
-import 'package:e_commerce/widgets/product_loading_tile_widget.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';

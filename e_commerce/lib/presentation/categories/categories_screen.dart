@@ -1,11 +1,9 @@
 import 'package:e_commerce/business_logic/categories/bloc/categories_bloc.dart';
-import 'package:e_commerce/business_logic/home/bloc/home_bloc.dart';
 import 'package:e_commerce/repositories/home_category_repo.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/categories_single_product_args.dart';
 import 'package:e_commerce/widgets/categories_single_product_page.dart';
 import 'package:e_commerce/widgets/category_tile_widget.dart';
-import 'package:e_commerce/widgets/filter_widget.dart';
 import 'package:e_commerce/widgets/product_loading_tile_widget.dart';
 import 'package:e_commerce/widgets/search_bar_widget.dart';
 import 'package:flutter/material.dart';

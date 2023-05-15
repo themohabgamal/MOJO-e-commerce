@@ -1,5 +1,4 @@
 import 'package:e_commerce/business_logic/home/bloc/home_bloc.dart';
-import 'package:e_commerce/models/category_response_model.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/home_single_product_args.dart';
 import 'package:flutter/material.dart';

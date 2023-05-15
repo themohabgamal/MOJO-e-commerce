@@ -20,7 +20,7 @@ class CategoryNameWidget extends StatelessWidget {
         child: Text(
           "${name}  ",
           style: Theme.of(context).textTheme.headline6?.copyWith(
-              color: isSelected ? Colors.white : MyTheme.darkGreyColor,
+              color: isSelected ? Colors.white : Colors.black54,
               fontWeight: FontWeight.w600),
           textAlign: TextAlign.center,
         ));

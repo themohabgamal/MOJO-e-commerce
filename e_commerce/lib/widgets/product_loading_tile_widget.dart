@@ -20,7 +20,7 @@ class ProductLoadingTileWidget extends StatelessWidget {
                 color: Colors.grey.withAlpha(30),
                 borderRadius: BorderRadius.circular(15)),
             child: Center(
-              child: LoadingAnimationWidget.halfTriangleDot(
+              child: LoadingAnimationWidget.bouncingBall(
                 color: MyTheme.mainColor,
                 size: 50,
               ),

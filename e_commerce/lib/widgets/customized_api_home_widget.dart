@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:e_commerce/business_logic/home/bloc/home_bloc.dart';
-import 'package:e_commerce/models/category_response_model.dart';
 import 'package:e_commerce/repositories/home_category_repo.dart';
 import 'package:e_commerce/widgets/category_tile_widget.dart';
 import 'package:e_commerce/widgets/product_loading_tile_widget.dart';

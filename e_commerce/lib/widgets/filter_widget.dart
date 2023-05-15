@@ -1,4 +1,3 @@
-import 'package:e_commerce/theming/theme.dart';
 import 'package:flutter/material.dart';
 
 class FilterWidget extends StatelessWidget {

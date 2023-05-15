@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyTheme {
   static const mainColor = Color(0xFF0D6EFD);
-  static const darkGreyColor = Color(0xFF6A6A6A);
+  static const darkGreyColor = Color(0xFF16182C);
   static const lighterColor = Color.fromARGB(255, 247, 247, 247);
   static const darkColor = Color.fromARGB(255, 37, 37, 37);
   static const orangeColor = Color(0xFFFf4c24);
@@ -33,6 +33,7 @@ class MyTheme {
             decoration: TextDecoration.none),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.white70,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           selectedIconTheme: IconThemeData(size: 30, color: mainColor),
