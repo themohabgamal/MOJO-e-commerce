@@ -46,6 +46,8 @@ dependencies:
   flutter_slidable: ^2.0.0
   lottie: ^2.3.2
   introduction_screen: ^3.1.4
+  firebase_core: ^2.13.0
+  firebase_auth: ^4.6.1
 
 dev_dependencies:
   flutter_test:

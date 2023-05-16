@@ -1,6 +1,11 @@
+import 'package:e_commerce/main.dart';
+import 'package:e_commerce/presentation/auth/signup_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
+import 'package:e_commerce/widgets/alert.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login';
@@ -10,8 +15,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  String? _email;
-  String? _password;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 32),
               TextFormField(
+                controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: 'Email ID',
@@ -52,12 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                   return null;
                 },
-                onSaved: (value) {
-                  _email = value;
-                },
               ),
               SizedBox(height: 16),
               TextFormField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                     labelText: 'Password', prefixIcon: Icon(IconlyLight.lock)),
@@ -66,9 +70,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     return 'Please enter your password';
                   }
                   return null;
-                },
-                onSaved: (value) {
-                  _password = value;
                 },
               ),
               SizedBox(height: 32),
@@ -87,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          // TODO: Implement login functionality
+                          logIn();
                         }
                       },
                       child: Padding(
@@ -117,7 +118,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // TODO: Implement forgot password functionality
+                      Navigator.pushReplacementNamed(
+                          context, SignupScreen.routeName);
                     },
                     child: Text(
                       'Register',
@@ -134,5 +136,21 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future logIn() async {
+    Alert.showAlert(
+        context, "assets/animations/loading.json", "Authenticating");
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+      navigatorKey.currentState!.pop();
+      Alert.showAlert(
+          context, "assets/animations/success.json", "Logged in successfully");
+    } on FirebaseAuthException catch (e) {
+      navigatorKey.currentState!.pop();
+      Alert.showAlert(context, "assets/animations/error.json", "${e.message}");
+    }
   }
 }

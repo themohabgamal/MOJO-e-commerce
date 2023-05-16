@@ -1,3 +1,4 @@
+import 'package:e_commerce/presentation/auth/login_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -11,11 +12,14 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
   String? _email;
+  String? _username;
+  String? _passwordConfirmation;
   String? _password;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32.0),
         child: Form(
@@ -53,7 +57,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   return null;
                 },
                 onSaved: (value) {
-                  _email = value;
+                  _username = value;
                 },
               ),
               TextFormField(
@@ -99,7 +103,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   return null;
                 },
                 onSaved: (value) {
-                  _password = value;
+                  _passwordConfirmation = value;
                 },
               ),
               SizedBox(height: 32),
@@ -148,7 +152,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // TODO: Implement forgot password functionality
+                      Navigator.pushReplacementNamed(
+                          context, LoginScreen.routeName);
                     },
                     child: Text(
                       'Login',

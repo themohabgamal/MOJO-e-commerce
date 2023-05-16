@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "735161977049",
+    "project_id": "mojo-7da96",
+    "storage_bucket": "mojo-7da96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735161977049:android:dd637dd41a9f679ebe56c8",
+        "android_client_info": {
+          "package_name": "com.example.mojo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735161977049-09dv425bajlg8j2ld26sudpuhu60i6mi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBlaf0X8IWJS9n5NgGO2WpEc_Xq9af7Nc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735161977049-09dv425bajlg8j2ld26sudpuhu60i6mi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
