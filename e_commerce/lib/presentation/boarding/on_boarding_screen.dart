@@ -37,7 +37,7 @@ class OnBoardingScreen extends StatelessWidget {
                 color: MyTheme.darkGreyColor),
           ),
           onDone: () {
-            Navigator.pushNamed(context, NavSwitcher.routeName);
+            Navigator.pushReplacementNamed(context, NavSwitcher.routeName);
           },
           animationDuration: 10,
           dotsDecorator: DotsDecorator(

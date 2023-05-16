@@ -49,9 +49,7 @@ class _CartScreenState extends State<CartScreen> {
         buildWhen: (previous, current) => current is! CartActionState,
         listenWhen: (previous, current) => current is CartActionState,
         listener: (context, state) {
-          if (state is NavigateBackState) {
-            Navigator.pop(context);
-          } else if (state is GoToCartSingleProductState) {
+          if (state is GoToCartSingleProductState) {
             Navigator.pushNamed(context, CartSingleProductPage.routeName,
                 arguments: CartToSingleProductPageArgs(
                     cartBloc: cartBloc,

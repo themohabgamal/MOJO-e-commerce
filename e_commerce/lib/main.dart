@@ -1,4 +1,6 @@
 import 'package:e_commerce/nav_switcher.dart';
+import 'package:e_commerce/presentation/auth/login_screen.dart';
+import 'package:e_commerce/presentation/auth/signup_screen.dart';
 import 'package:e_commerce/presentation/boarding/on_boarding_screen.dart';
 import 'package:e_commerce/presentation/home/home_screen.dart';
 import 'package:e_commerce/presentation/home/hot_deals_page.dart';
@@ -32,8 +34,11 @@ class MyApp extends StatelessWidget {
         CategoriesSingleProductPage.routeName: (context) =>
             CategoriesSingleProductPage(),
         OnBoardingScreen.routeName: (context) => OnBoardingScreen(),
+        LoginScreen.routeName: (context) => LoginScreen(),
+        SignupScreen.routeName: (context) => SignupScreen(),
       },
-      initialRoute: OnBoardingScreen.routeName,
+      // initialRoute: OnBoardingScreen.routeName,
+      initialRoute: SignupScreen.routeName,
     );
   }
 }
