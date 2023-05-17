@@ -1,10 +1,11 @@
-import 'package:e_commerce/presentation/auth/login_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
 class SignupScreen extends StatefulWidget {
   static const String routeName = 'signup';
+  final Function() clickedLogin;
+  SignupScreen({required this.clickedLogin});
   @override
   _SignupScreenState createState() => _SignupScreenState();
 }
@@ -152,8 +153,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(
-                          context, LoginScreen.routeName);
+                      widget.clickedLogin();
                     },
                     child: Text(
                       'Login',

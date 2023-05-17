@@ -1,14 +1,14 @@
 import 'package:e_commerce/main.dart';
-import 'package:e_commerce/presentation/auth/signup_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login';
+  final Function() clickedRegister;
+  LoginScreen({required this.clickedRegister});
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -118,8 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(
-                          context, SignupScreen.routeName);
+                      widget.clickedRegister();
                     },
                     child: Text(
                       'Register',
