@@ -1,4 +1,8 @@
+import 'package:e_commerce/main.dart';
+import 'package:e_commerce/presentation/user/user_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
+import 'package:e_commerce/widgets/alert.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
@@ -12,163 +16,177 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
-  String? _email;
-  String? _username;
-  String? _passwordConfirmation;
-  String? _password;
+  final emailController = TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final passwordConfirmationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 18),
-              Text(
-                'Hi There!',
-                style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: MyTheme.mainColor),
-              ),
-              SizedBox(height: 16),
-              Text(
-                'Join now and be a member of our family',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[600],
-                ),
-              ),
-              SizedBox(height: 32),
-              TextFormField(
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  labelText: 'Username',
-                  prefixIcon: Icon(IconlyLight.user),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your username';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _username = value;
-                },
-              ),
-              TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: 'Email ID',
-                  prefixIcon: Icon(IconlyLight.message),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _email = value;
-                },
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    labelText: 'Password', prefixIcon: Icon(IconlyLight.lock)),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _password = value;
-                },
-              ),
-              TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    labelText: 'Password Confirmation',
-                    prefixIcon: Icon(IconlyLight.password)),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your password again';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _passwordConfirmation = value;
-                },
-              ),
-              SizedBox(height: 32),
-              Row(
+        padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 70),
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              MyTheme.mainColor),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                  SizedBox(height: 18),
+                  Text(
+                    'Hi There! ',
+                    style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: MyTheme.mainColor),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'Join now and be a member of our family',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  SizedBox(height: 32),
+                  TextFormField(
+                    controller: usernameController,
+                    keyboardType: TextInputType.name,
+                    decoration: InputDecoration(
+                      labelText: 'Username',
+                      prefixIcon: Icon(IconlyLight.user),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your username';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      labelText: 'Email ID',
+                      prefixIcon: Icon(IconlyLight.message),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 16),
+                  TextFormField(
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: 'Password',
+                        prefixIcon: Icon(IconlyLight.lock)),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: passwordConfirmationController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: 'Password Confirmation',
+                        prefixIcon: Icon(IconlyLight.password)),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your password again';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  MyTheme.mainColor),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ))),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-                          // TODO: Implement login functionality
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                                borderRadius: BorderRadius.circular(18.0),
+                              ))),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+                              signUp();
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: Text(
+                              'Sign up',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Already a member?',
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          widget.clickedLogin();
+                        },
                         child: Text(
-                          'Sign up',
+                          'Login',
                           style: TextStyle(
-                            fontSize: 20,
+                            color: MyTheme.mainColor,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Already a member?',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      widget.clickedLogin();
-                    },
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        color: MyTheme.mainColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Future signUp() async {
+    Alert.showAlert(
+        context, "assets/animations/loading.json", "Authenticating");
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+      UserScreen.fillUserName(usernameController.text);
+      navigatorKey.currentState!.pop();
+      Alert.showAlert(
+          context, "assets/animations/success.json", "Signed up successfully");
+    } on FirebaseAuthException catch (e) {
+      navigatorKey.currentState!.pop();
+      Alert.showAlert(context, "assets/animations/error.json", e.message!);
+    }
   }
 }

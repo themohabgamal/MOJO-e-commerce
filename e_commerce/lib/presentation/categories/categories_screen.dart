@@ -57,11 +57,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           }
         },
         builder: (context, state) {
-          return Column(
+          return Wrap(
+            spacing: 10,
             children: [
               SafeArea(
                 child: Container(
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       color: MyTheme.mainColor,
                       borderRadius: BorderRadius.only(

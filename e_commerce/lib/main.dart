@@ -1,7 +1,5 @@
 import 'package:e_commerce/firebase_options.dart';
 import 'package:e_commerce/nav_switcher.dart';
-import 'package:e_commerce/presentation/auth/login_screen.dart';
-import 'package:e_commerce/presentation/auth/signup_screen.dart';
 import 'package:e_commerce/presentation/boarding/on_boarding_screen.dart';
 import 'package:e_commerce/presentation/home/home_screen.dart';
 import 'package:e_commerce/presentation/home/hot_deals_page.dart';
@@ -13,11 +11,17 @@ import 'package:e_commerce/widgets/categories_single_product_page.dart';
 import 'package:e_commerce/widgets/single_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() async {
+int? isViewed;
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.android);
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  isViewed = prefs.getInt('onBoard');
+  await prefs.setInt('onBoard', 1);
+  runApp(MyApp());
 }
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -42,12 +46,12 @@ class MyApp extends StatelessWidget {
         CategoriesSingleProductPage.routeName: (context) =>
             CategoriesSingleProductPage(),
         OnBoardingScreen.routeName: (context) => OnBoardingScreen(),
-        LoginScreen.routeName: (context) => LoginScreen(),
-        SignupScreen.routeName: (context) => SignupScreen(),
         HomeChecker.routeName: (context) => HomeChecker(),
       },
       // initialRoute: OnBoardingScreen.routeName,
-      initialRoute: HomeChecker.routeName,
+      initialRoute: isViewed == 0 || isViewed == null
+          ? OnBoardingScreen.routeName
+          : NavSwitcher.routeName,
     );
   }
 }
