@@ -24,7 +24,8 @@ class WishListScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text("My Wishlist"),
           leading: IconButton(
-            icon: Icon(IconlyLight.arrow_left_2, color: Colors.black),
+            icon: Icon(IconlyLight.arrow_left_2,
+                color: Theme.of(context).textTheme.headline6?.color),
             onPressed: () {
               wishlistBloc.add(WishlistNavigateBackEvent());
             },

@@ -25,7 +25,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             SizedBox(height: 20),
             ListTile(
-              title: Text('Notifications'),
+              title: Text(
+                'Notifications',
+                style: Theme.of(context).textTheme.headline6,
+              ),
               trailing: Switch(
                 value: _notificationsEnabled,
                 onChanged: (value) {
@@ -37,13 +40,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             Divider(),
             ListTile(
-              title: Text('Dark Mode'),
+              title: Text(
+                'Dark Mode',
+                style: Theme.of(context).textTheme.headline6,
+              ),
               trailing: Switch(
                 value: _darkModeEnabled,
                 onChanged: (value) {
                   _darkModeEnabled = value;
                   setState(() {
-                    value == true
+                    _darkModeEnabled == true
                         ? themingCubit.changeToDark()
                         : themingCubit.changeToLight();
                   });
@@ -52,7 +58,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             Divider(),
             ListTile(
-              title: Text('Language'),
+              title: Text(
+                'Language',
+                style: Theme.of(context).textTheme.headline6,
+              ),
               trailing: DropdownButton<String>(
                 value: _selectedLanguage,
                 items: <String>[
@@ -64,7 +73,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ].map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value),
+                    child: Text(
+                      value,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
                   );
                 }).toList(),
                 onChanged: (value) {

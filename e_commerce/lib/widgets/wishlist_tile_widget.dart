@@ -30,7 +30,8 @@ class _WishlistTileWidget extends State<WishlistTileWidget> {
         width: 220,
         height: 100,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15), color: Colors.white),
+            borderRadius: BorderRadius.circular(15),
+            color: Theme.of(context).canvasColor),
         child: Row(
           children: [
             Image.network(
@@ -50,7 +51,7 @@ class _WishlistTileWidget extends State<WishlistTileWidget> {
                     style: Theme.of(context).textTheme.headline6?.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
-                        color: Colors.black),
+                        color: Theme.of(context).textTheme.headline6?.color),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -60,16 +61,7 @@ class _WishlistTileWidget extends State<WishlistTileWidget> {
                     children: [
                       Text(
                         "\$ ${widget.categoryResponseModel.price.toString().length > 3 ? widget.categoryResponseModel.price.toString().substring(0, 3) : widget.categoryResponseModel.price.toString()}",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 18),
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.favorite,
-                            color: MyTheme.mainColor,
-                          )
-                        ],
+                        style: Theme.of(context).textTheme.headline6,
                       ),
                     ],
                   ),

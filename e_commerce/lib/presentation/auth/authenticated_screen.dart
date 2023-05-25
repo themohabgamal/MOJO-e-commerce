@@ -40,15 +40,27 @@ class _AuthenticatedScreenState extends State<AuthenticatedScreen> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Logout'),
+            leading: Icon(
+              Icons.logout,
+              color: Theme.of(context).textTheme.headline6?.color,
+            ),
+            title: Text(
+              'Logout',
+              style: Theme.of(context).textTheme.headline6,
+            ),
             onTap: () {
               logOut();
             },
           ),
           ListTile(
-            leading: Icon(Icons.info_outline),
-            title: Text('About Us'),
+            leading: Icon(
+              Icons.info_outline,
+              color: Theme.of(context).textTheme.headline6?.color,
+            ),
+            title: Text(
+              'About Us',
+              style: Theme.of(context).textTheme.headline6,
+            ),
             onTap: () {
               Navigator.pushNamed(context, AboutUsScreen.routeName);
             },

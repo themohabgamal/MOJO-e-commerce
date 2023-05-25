@@ -19,15 +19,27 @@ class _NonAuthenticatedScreenState extends State<NonAuthenticatedScreen> {
           padding: EdgeInsets.zero,
           children: [
             ListTile(
-              leading: Icon(Icons.login),
-              title: Text('Login / signup'),
+              leading: Icon(
+                Icons.login,
+                color: Theme.of(context).textTheme.headline6?.color,
+              ),
+              title: Text(
+                'Login / signup',
+                style: Theme.of(context).textTheme.headline6,
+              ),
               onTap: () {
                 Navigator.pushReplacementNamed(context, HomeChecker.routeName);
               },
             ),
             ListTile(
-              leading: Icon(Icons.info_outline),
-              title: Text('About Us'),
+              leading: Icon(
+                Icons.info_outline,
+                color: Theme.of(context).textTheme.headline6?.color,
+              ),
+              title: Text(
+                'About Us',
+                style: Theme.of(context).textTheme.headline6,
+              ),
               onTap: () {
                 Navigator.pushNamed(context, AboutUsScreen.routeName);
               },

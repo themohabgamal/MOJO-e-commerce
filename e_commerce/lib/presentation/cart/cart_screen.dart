@@ -125,7 +125,7 @@ class _CartScreenState extends State<CartScreen> {
       bottomNavigationBar: Container(
         height: 240,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).canvasColor,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30), topRight: Radius.circular(30))),
         child: Padding(
@@ -137,14 +137,12 @@ class _CartScreenState extends State<CartScreen> {
                 children: [
                   Text(
                     "Subtotal",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        ?.copyWith(color: Colors.black54),
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: Theme.of(context).textTheme.headline6?.color),
                   ),
                   Text("\$ ${subTotal}",
                       style: Theme.of(context).textTheme.headline6?.copyWith(
-                          color: Colors.black,
+                          color: Theme.of(context).textTheme.headline6?.color,
                           fontSize: 20,
                           fontWeight: FontWeight.w700)),
                 ],
@@ -155,21 +153,19 @@ class _CartScreenState extends State<CartScreen> {
                 children: [
                   Text(
                     "Delivery",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        ?.copyWith(color: Colors.black54),
+                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: Theme.of(context).textTheme.headline6?.color),
                   ),
                   Text("\$ ${delivery}",
                       style: Theme.of(context).textTheme.headline6?.copyWith(
-                          color: Colors.black,
+                          color: Theme.of(context).textTheme.headline6?.color,
                           fontSize: 20,
                           fontWeight: FontWeight.w700)),
                 ],
               ),
               Text("---------------------------------------",
                   style: Theme.of(context).textTheme.headline6?.copyWith(
-                      color: Colors.black38,
+                      color: Theme.of(context).textTheme.headline6?.color,
                       fontSize: 20,
                       fontWeight: FontWeight.w100)),
               SizedBox(height: 10),
@@ -179,11 +175,12 @@ class _CartScreenState extends State<CartScreen> {
                   Text(
                     "TotalCost",
                     style: Theme.of(context).textTheme.headline6?.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w600),
+                        color: Theme.of(context).textTheme.headline6?.color,
+                        fontWeight: FontWeight.w600),
                   ),
                   Text("\$ ${totalCost}",
                       style: Theme.of(context).textTheme.headline6?.copyWith(
-                          color: Colors.black,
+                          color: Theme.of(context).textTheme.headline6?.color,
                           fontSize: 20,
                           fontWeight: FontWeight.w700)),
                 ],
@@ -203,8 +200,8 @@ class _CartScreenState extends State<CartScreen> {
                     child: Text("checkout",
                         style: Theme.of(context).textTheme.headline6?.copyWith(
                             color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500)),
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600)),
                   ))
                 ],
               )

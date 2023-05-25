@@ -37,7 +37,8 @@ class _CartTileWidgetState extends State<CartTileWidget> {
         width: 220,
         height: 100,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15), color: Colors.white),
+            borderRadius: BorderRadius.circular(15),
+            color: Theme.of(context).canvasColor),
         child: Row(
           children: [
             Image.network(
@@ -57,7 +58,7 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                     style: Theme.of(context).textTheme.headline6?.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
-                        color: Colors.black),
+                        color: Theme.of(context).textTheme.headline6?.color),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -68,7 +69,10 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                       Text(
                         "\$ ${widget.categoryResponseModel.price.toString().length > 3 ? widget.categoryResponseModel.price.toString().substring(0, 3) : widget.categoryResponseModel.price.toString()}",
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 18),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color:
+                                Theme.of(context).textTheme.headline6?.color),
                       ),
                       Container(
                         padding: EdgeInsets.all(7),

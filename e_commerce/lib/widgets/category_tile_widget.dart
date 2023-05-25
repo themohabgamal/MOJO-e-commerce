@@ -35,7 +35,7 @@ class CategoryTileWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(5),
         margin: EdgeInsets.all(7),
-        width: 220,
+        width: 180,
         height: 220,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
