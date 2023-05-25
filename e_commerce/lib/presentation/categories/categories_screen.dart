@@ -57,130 +57,115 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           }
         },
         builder: (context, state) {
-          return Wrap(
-            spacing: 10,
+          return Column(
             children: [
-              SafeArea(
-                child: Container(
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    color: MyTheme.mainColor,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(child: SearchBarWidget()),
+                    PopupMenuButton(
+                      position: PopupMenuPosition.under,
                       color: MyTheme.mainColor,
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(child: SearchBarWidget()),
-                      PopupMenuButton(
-                        color: MyTheme.darkGreyColor,
-                        onSelected: (value) {
-                          setState(() {
-                            selectedCategory = value;
-                          });
-                        },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20.0),
-                          ),
+                      onSelected: (value) {
+                        setState(() {
+                          selectedCategory = value;
+                        });
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15.0),
                         ),
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          child: Icon(
-                            IconlyBold.filter,
-                            color: Colors.white,
-                            size: 28,
-                          ),
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        child: Icon(
+                          IconlyBold.filter,
+                          color: Colors.white,
+                          size: 28,
                         ),
-                        itemBuilder: (context) {
-                          return [
-                            PopupMenuItem(
-                                child: Text(
-                                  "Electronics",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                value: "electronics"),
-                            PopupMenuItem(
-                                child: Text(
-                                  "Jewelery",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                value: "jewelery"),
-                            PopupMenuItem(
-                                child: Text(
-                                  "Men's clothing",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                value: "men's clothing"),
-                            PopupMenuItem(
-                                child: Text(
-                                  "Women's clothing",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                value: "women's clothing"),
-                          ];
-                        },
-                      )
-                    ],
-                  ),
+                      ),
+                      itemBuilder: (context) {
+                        return [
+                          PopupMenuItem(
+                              child: Text(
+                                "Electronics",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              value: "electronics"),
+                          PopupMenuItem(
+                              child: Text(
+                                "Jewelery",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              value: "jewelery"),
+                          PopupMenuItem(
+                              child: Text(
+                                "Men's clothing",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              value: "men's clothing"),
+                          PopupMenuItem(
+                              child: Text(
+                                "Women's clothing",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              value: "women's clothing"),
+                        ];
+                      },
+                    )
+                  ],
                 ),
               ),
-              SizedBox(
-                height: 44,
-              ),
-              Container(
-                height: 500,
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 244, 244, 244),
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15))),
-                child: SizedBox(
-                  height: 250,
-                  width: double.infinity,
-                  child: FutureBuilder(
-                    future: HomeCategoryRepo.getSpeceficCategory(
-                        "${selectedCategory}"),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        return Center(
-                            child: Text(
-                                "Error fetching data from server ${snapshot.error.toString()}"));
-                      } else if (snapshot.connectionState ==
-                          ConnectionState.waiting) {
-                        return GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 6 / 10,
-                                  crossAxisSpacing: 5,
-                                  mainAxisSpacing: 8),
-                          itemBuilder: (context, index) {
-                            return ProductLoadingTileWidget();
-                          },
-                          itemCount: snapshot.data?.length,
-                        );
-                      } else if (snapshot.hasData) {
-                        return GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 6 / 10,
-                                  crossAxisSpacing: 15,
-                                  mainAxisSpacing: 15),
-                          itemBuilder: (context, index) {
-                            return CategoryTileWidget(
-                              categoryResponseModel: snapshot.data![index],
-                              categoriesBloc: categoriesBloc,
-                              isHotDeal: false,
-                            );
-                          },
-                          itemCount: snapshot.data!.length,
-                        );
-                      } else
-                        return SizedBox();
-                    },
-                  ),
+              Expanded(
+                flex: 1,
+                child: FutureBuilder(
+                  future: HomeCategoryRepo.getSpeceficCategory(
+                      "${selectedCategory}"),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                          child: Text(
+                              "Error fetching data from server ${snapshot.error.toString()}"));
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 6 / 10,
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 8),
+                        itemBuilder: (context, index) {
+                          return ProductLoadingTileWidget();
+                        },
+                        itemCount: snapshot.data?.length,
+                      );
+                    } else if (snapshot.hasData) {
+                      return GridView.builder(
+                        padding: EdgeInsets.all(10),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 6 / 9,
+                            crossAxisSpacing: 0,
+                            mainAxisSpacing: 0),
+                        itemBuilder: (context, index) {
+                          return CategoryTileWidget(
+                            categoryResponseModel: snapshot.data![index],
+                            categoriesBloc: categoriesBloc,
+                            isHotDeal: false,
+                          );
+                        },
+                        itemCount: snapshot.data!.length,
+                      );
+                    } else
+                      return SizedBox();
+                  },
                 ),
               )
             ],

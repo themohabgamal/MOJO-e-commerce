@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:e_commerce/presentation/auth/authenticated_screen.dart';
+import 'package:e_commerce/presentation/auth/non_authenticated_screen.dart';
 import 'package:e_commerce/presentation/cart/cart_screen.dart';
 import 'package:e_commerce/presentation/home/hot_deals_page.dart';
 import 'package:e_commerce/presentation/wishlist/wish_list_screen.dart';
@@ -8,8 +10,10 @@ import 'package:e_commerce/widgets/category_name_widget.dart';
 import 'package:e_commerce/widgets/customized_api_home_widget.dart';
 import 'package:e_commerce/widgets/home_single_product_args.dart';
 import 'package:e_commerce/widgets/single_product_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconly/iconly.dart';
 
 import '../../business_logic/home/bloc/home_bloc.dart';
 
@@ -77,22 +81,35 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       builder: (context, state) {
         return Scaffold(
+          drawer: StreamBuilder<User?>(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return AuthenticatedScreen();
+              } else {
+                return NonAuthenticatedScreen();
+              }
+            },
+          ),
           appBar: AppBar(
             title: const Text(
               "MOJO",
               style: TextStyle(fontSize: 30),
             ),
             centerTitle: true,
-            leading: IconButton(
-              icon: Image.asset("assets/images/menu-bar (1).png", width: 40),
-              onPressed: () {},
+            leading: Builder(
+              builder: (context) {
+                return IconButton(
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                    icon: Icon(
+                      Icons.menu,
+                      size: 30,
+                    ));
+              },
             ),
             actions: [
               IconButton(
-                icon: Image.asset(
-                  "assets/images/favourite.png",
-                  width: 25,
-                ),
+                icon: Icon(IconlyLight.heart, size: 30),
                 onPressed: () {
                   homeBloc.add(NavigateToWishlistEvent());
                 },

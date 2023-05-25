@@ -15,12 +15,15 @@ class CategoryNameWidget extends StatelessWidget {
         width: 120,
         height: 55,
         decoration: BoxDecoration(
-            color: isSelected ? MyTheme.mainColor : Colors.white,
+            color:
+                isSelected ? MyTheme.mainColor : Theme.of(context).canvasColor,
             borderRadius: BorderRadius.circular(12)),
         child: Text(
           "${name}  ",
           style: Theme.of(context).textTheme.headline6?.copyWith(
-              color: isSelected ? Colors.white : Colors.black54,
+              color: isSelected
+                  ? Colors.white
+                  : Theme.of(context).textTheme.headline6?.color,
               fontWeight: FontWeight.w600),
           textAlign: TextAlign.center,
         ));

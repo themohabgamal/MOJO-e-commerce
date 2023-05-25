@@ -37,22 +37,25 @@ class _HotDealsPageState extends State<HotDealsPage> {
         builder: (context, state) {
           if (state is HotDealsLoadedState) {
             final successState = state as HotDealsLoadedState;
-            return SizedBox(
-                child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 6 / 10,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15),
-              itemBuilder: (context, index) {
-                return CategoryTileWidget(
-                  categoryResponseModel: successState.list[index],
-                  homeBloc: homeBloc,
-                  isHotDeal: true,
-                );
-              },
-              itemCount: successState.list.length,
-            ));
+            return Container(
+              color: Color.fromARGB(255, 233, 233, 233),
+              child: SizedBox(
+                  child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 6 / 10,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15),
+                itemBuilder: (context, index) {
+                  return CategoryTileWidget(
+                    categoryResponseModel: successState.list[index],
+                    homeBloc: homeBloc,
+                    isHotDeal: true,
+                  );
+                },
+                itemCount: successState.list.length,
+              )),
+            );
           } else if (state is HotDealsLoadingState) {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

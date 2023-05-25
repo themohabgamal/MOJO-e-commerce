@@ -1,0 +1,184 @@
+import 'package:e_commerce/main.dart';
+import 'package:e_commerce/nav_switcher.dart';
+import 'package:e_commerce/presentation/about_us.dart';
+import 'package:e_commerce/theming/theme.dart';
+import 'package:e_commerce/widgets/alert.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
+class AuthenticatedScreen extends StatefulWidget {
+  const AuthenticatedScreen({super.key});
+
+  @override
+  State<AuthenticatedScreen> createState() => _AuthenticatedScreenState();
+}
+
+class _AuthenticatedScreenState extends State<AuthenticatedScreen> {
+  var user = FirebaseAuth.instance.currentUser;
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      elevation: 0,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          UserAccountsDrawerHeader(
+            decoration: BoxDecoration(color: MyTheme.mainColor),
+            accountName: Text(
+              "${user?.displayName}",
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4
+                  ?.copyWith(color: Colors.white),
+            ),
+            accountEmail: Text(
+              "${user?.email}",
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  ?.copyWith(color: Colors.white),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Logout'),
+            onTap: () {
+              logOut();
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.info_outline),
+            title: Text('About Us'),
+            onTap: () {
+              Navigator.pushNamed(context, AboutUsScreen.routeName);
+            },
+          ),
+        ],
+      ),
+    );
+    // return Column(
+    //   children: [
+    //     SingleChildScrollView(
+    //       child: Padding(
+    //         padding: const EdgeInsets.all(16.0),
+    //         child: Column(
+    //           crossAxisAlignment: CrossAxisAlignment.start,
+    //           children: [
+    //             Row(
+    //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //                 children: [
+    //                   Text(
+    //                     'Signed in as ',
+    //                     style: TextStyle(
+    //                       fontWeight: FontWeight.bold,
+    //                       fontSize: 18,
+    //                     ),
+    //                   ),
+    //                   Text(
+    //                     '${user?.displayName}',
+    //                     style: TextStyle(
+    //                       fontWeight: FontWeight.bold,
+    //                       fontSize: 18,
+    //                     ),
+    //                   ),
+    //                 ]),
+    //             Text(
+    //               'Notifications',
+    //               style: TextStyle(
+    //                 fontWeight: FontWeight.bold,
+    //                 fontSize: 18,
+    //               ),
+    //             ),
+    //             SwitchListTile(
+    //               title: Text('Receive notifications'),
+    //               value: _receiveNotifications,
+    //               onChanged: (value) {
+    //                 setState(() {
+    //                   _receiveNotifications = value;
+    //                 });
+    //               },
+    //             ),
+    //             SizedBox(
+    //               height: 16,
+    //             ),
+    //             Text(
+    //               'Appearance',
+    //               style: TextStyle(
+    //                 fontWeight: FontWeight.bold,
+    //                 fontSize: 18,
+    //               ),
+    //             ),
+    //             SwitchListTile(
+    //               title: Text('Enable dark mode'),
+    //               value: _enableDarkMode,
+    //               onChanged: (value) {
+    //                 setState(() {
+    //                   _enableDarkMode = value;
+    //                 });
+    //               },
+    //             ),
+    //             SizedBox(
+    //               height: 16,
+    //             ),
+    //             Text(
+    //               'Language',
+    //               style: TextStyle(
+    //                 fontWeight: FontWeight.bold,
+    //                 fontSize: 18,
+    //               ),
+    //             ),
+    //             DropdownButton<String>(
+    //               value: _selectedLanguage,
+    //               onChanged: (newValue) {
+    //                 setState(() {
+    //                   _selectedLanguage = newValue!;
+    //                 });
+    //               },
+    //               items: <String>['English', 'Spanish', 'French', 'German']
+    //                   .map<DropdownMenuItem<String>>((String value) {
+    //                 return DropdownMenuItem<String>(
+    //                   value: value,
+    //                   child: Text(value),
+    //                 );
+    //               }).toList(),
+    //             ),
+    //             SizedBox(height: 10),
+    //             GestureDetector(
+    //               onTap: () => logOut(),
+    //               child: Container(
+    //                 child: Row(
+    //                   children: [
+    //                     Icon(Icons.logout),
+    //                     SizedBox(width: 10),
+    //                     Text(
+    //                       "Logout",
+    //                       style: Theme.of(context)
+    //                           .textTheme
+    //                           .headline6
+    //                           ?.copyWith(
+    //                               fontSize: 16, fontWeight: FontWeight.w600),
+    //                     )
+    //                   ],
+    //                 ),
+    //               ),
+    //             )
+    //           ],
+    //         ),
+    //       ),
+    //     ),
+    //   ],
+    // );
+  }
+
+  Future logOut() async {
+    Navigator.of(context).pushReplacementNamed(NavSwitcher.routeName);
+    Alert.showAlert(context, "assets/animations/loading.json", "Signning Out");
+    await Future.delayed(
+      Duration(seconds: 2),
+      () {
+        FirebaseAuth.instance.signOut();
+        navigatorKey.currentState?.maybePop();
+      },
+    );
+  }
+}

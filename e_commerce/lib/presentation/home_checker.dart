@@ -1,6 +1,6 @@
 import 'package:e_commerce/nav_switcher.dart';
 import 'package:e_commerce/presentation/auth/auth_page.dart';
-import 'package:e_commerce/presentation/auth/login_screen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

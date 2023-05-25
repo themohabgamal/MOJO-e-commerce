@@ -70,7 +70,7 @@ class _CartScreenState extends State<CartScreen> {
                   children: [
                     SizedBox(
                         height: 250,
-                        child: Image.asset("assets/images/empty-cart.png")),
+                        child: Image.asset("assets/images/box.png")),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Text(

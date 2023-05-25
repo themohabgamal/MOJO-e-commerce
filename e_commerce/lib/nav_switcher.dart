@@ -1,6 +1,6 @@
 import 'package:e_commerce/presentation/cart/cart_screen.dart';
 import 'package:e_commerce/presentation/home/home_screen.dart';
-import 'package:e_commerce/presentation/user/user_screen.dart';
+import 'package:e_commerce/presentation/settings/settings_screen.dart';
 import 'package:e_commerce/presentation/categories/categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -19,7 +19,7 @@ class _NavSwitcherState extends State<NavSwitcher> {
     const HomeScreen(),
     CategoriesScreen(),
     CartScreen(),
-    UserScreen()
+    SettingsScreen()
   ];
   @override
   Widget build(BuildContext context) {

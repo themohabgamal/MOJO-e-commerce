@@ -1,5 +1,4 @@
 import 'package:e_commerce/main.dart';
-import 'package:e_commerce/presentation/user/user_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,8 +7,8 @@ import 'package:iconly/iconly.dart';
 
 class SignupScreen extends StatefulWidget {
   static const String routeName = 'signup';
-  final Function() clickedLogin;
-  SignupScreen({required this.clickedLogin});
+  final Function()? clickedLogin;
+  SignupScreen({this.clickedLogin});
   @override
   _SignupScreenState createState() => _SignupScreenState();
 }
@@ -152,7 +151,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          widget.clickedLogin();
+                          widget.clickedLogin!();
                         },
                         child: Text(
                           'Login',
@@ -180,7 +179,7 @@ class _SignupScreenState extends State<SignupScreen> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
-      UserScreen.fillUserName(usernameController.text);
+
       navigatorKey.currentState!.pop();
       Alert.showAlert(
           context, "assets/animations/success.json", "Signed up successfully");

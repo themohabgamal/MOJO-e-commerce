@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
+  static const String routeName = 'auth';
 
   @override
   State<AuthPage> createState() => _AuthPageState();

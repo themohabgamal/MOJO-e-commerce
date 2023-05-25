@@ -33,11 +33,13 @@ class CategoryTileWidget extends StatelessWidget {
         }
       },
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(5),
+        margin: EdgeInsets.all(7),
         width: 220,
         height: 220,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15), color: Colors.white),
+            borderRadius: BorderRadius.circular(15),
+            color: Theme.of(context).canvasColor),
         child: Column(
           children: [
             Expanded(
@@ -63,7 +65,7 @@ class CategoryTileWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline6?.copyWith(
                       fontWeight: FontWeight.w500,
                       fontSize: 16,
-                      color: MyTheme.darkGreyColor),
+                      color: Theme.of(context).textTheme.headline6?.color),
                 ),
                 SizedBox(height: 10),
                 Expanded(
@@ -94,9 +96,8 @@ class CategoryTileWidget extends StatelessWidget {
                               ],
                             )
                           : Text(
-                              "\$ ${categoryResponseModel.price}",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 18),
+                              "\$ ${categoryResponseModel.price.toString().length > 3 ? categoryResponseModel.price.toString().substring(0, 3) : categoryResponseModel.price}",
+                              style: Theme.of(context).textTheme.headline6,
                             ),
                       Row(
                         children: [
@@ -113,7 +114,13 @@ class CategoryTileWidget extends StatelessWidget {
                                               categoryResponseModel));
                                 }
                               },
-                              icon: Icon(IconlyLight.heart)),
+                              icon: Icon(
+                                IconlyLight.heart,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    ?.color,
+                              )),
                           IconButton(
                               onPressed: () {
                                 if (homeBloc != null) {
@@ -126,7 +133,11 @@ class CategoryTileWidget extends StatelessWidget {
                                           categoryResponseModel));
                                 }
                               },
-                              icon: Icon(IconlyLight.bag)),
+                              icon: Icon(IconlyLight.bag,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      ?.color)),
                         ],
                       )
                     ],

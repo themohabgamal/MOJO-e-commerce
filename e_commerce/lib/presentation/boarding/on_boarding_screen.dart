@@ -11,141 +11,128 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Stack(children: [
-        Container(
+      body: IntroductionScreen(
+        globalBackgroundColor: Color(0xFF3a66dd),
+        done: Container(
+          width: 100,
+          height: 50,
+          alignment: Alignment.center,
+          child: Text(
+            "DONE",
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                ?.copyWith(color: Colors.white),
+          ),
           decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/images/boarding.png"),
-                  fit: BoxFit.cover)),
+              borderRadius: BorderRadius.circular(50),
+              color: MyTheme.orangeColor),
         ),
-        IntroductionScreen(
-          globalBackgroundColor: Colors.transparent,
-          done: Container(
-            width: 100,
-            height: 50,
-            alignment: Alignment.center,
-            child: Text(
-              "DONE",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(color: Colors.white),
-            ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: MyTheme.darkGreyColor),
+        onDone: () {
+          Navigator.pushReplacementNamed(context, NavSwitcher.routeName);
+        },
+        animationDuration: 10,
+        dotsDecorator: DotsDecorator(
+            activeColor: MyTheme.orangeColor, color: Colors.white),
+        next: Container(
+          width: 50,
+          height: 50,
+          child: Icon(
+            IconlyLight.arrow_right_2,
+            color: Colors.white,
           ),
-          onDone: () {
-            Navigator.pushReplacementNamed(context, NavSwitcher.routeName);
-          },
-          animationDuration: 10,
-          dotsDecorator: DotsDecorator(
-              activeColor: MyTheme.darkGreyColor, color: Colors.white),
-          next: Container(
-            width: 50,
-            height: 50,
-            child: Icon(
-              IconlyLight.arrow_right_2,
-              color: Colors.white,
-            ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: MyTheme.darkGreyColor),
-          ),
-          pages: [
-            PageViewModel(
-                useScrollView: false,
-                decoration: PageDecoration(
-                  titleTextStyle: Theme.of(context)
-                      .textTheme
-                      .headline4!
-                      .copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: MyTheme.darkGreyColor),
-                  bodyAlignment: Alignment.bottomCenter,
-                  imageFlex: 2,
-                  bodyTextStyle: Theme.of(context)
-                      .textTheme
-                      .headline4!
-                      .copyWith(
-                          fontWeight: FontWeight.w100,
-                          fontSize: 17,
-                          color: Colors.black54),
-                ),
-                body: "all your personal details and information are safe",
-                image: Container(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: SafeArea(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: MyTheme.orangeColor),
+        ),
+        pages: [
+          PageViewModel(
+              useScrollView: false,
+              decoration: PageDecoration(
+                titleTextStyle: Theme.of(context)
+                    .textTheme
+                    .headline4!
+                    .copyWith(fontWeight: FontWeight.w700, color: Colors.white),
+                bodyAlignment: Alignment.bottomCenter,
+                imageFlex: 2,
+                bodyTextStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                    fontWeight: FontWeight.w100,
+                    fontSize: 17,
+                    color: Colors.white),
+              ),
+              body: "all your personal details and information are safe",
+              image: Container(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: SafeArea(
                       child: Image.asset(
-                        "assets/images/boarding1.png",
-                        fit: BoxFit.fill,
-                      ),
+                    "assets/images/boarding3.png",
+                    width: 400,
+                  )),
+                ),
+              ),
+              title: "Secured and Fast Payment"),
+          PageViewModel(
+              useScrollView: false,
+              decoration: PageDecoration(
+                titleTextStyle: Theme.of(context)
+                    .textTheme
+                    .headline4!
+                    .copyWith(fontWeight: FontWeight.w700, color: Colors.white),
+                bodyAlignment: Alignment.bottomCenter,
+                imageFlex: 2,
+                bodyTextStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                    fontWeight: FontWeight.w100,
+                    fontSize: 17,
+                    color: Colors.white),
+              ),
+              body: "Find and cart all your needs by one click",
+              image: Container(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: SafeArea(
+                      child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      "assets/images/boarding2.png",
+                      width: 400,
                     ),
+                  )),
+                ),
+              ),
+              title: "All Products in One Place"),
+          PageViewModel(
+              useScrollView: false,
+              decoration: PageDecoration(
+                titleTextStyle: Theme.of(context)
+                    .textTheme
+                    .headline4!
+                    .copyWith(fontWeight: FontWeight.w700, color: Colors.white),
+                bodyAlignment: Alignment.bottomCenter,
+                imageFlex: 2,
+                bodyTextStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                    fontWeight: FontWeight.w100,
+                    fontSize: 17,
+                    color: Colors.white),
+              ),
+              body: "Just few time and your stuff we be in your hands",
+              image: Container(
+                alignment: Alignment.bottomCenter,
+                width: double.infinity,
+                padding: EdgeInsets.all(50),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    "assets/images/boarding1.png",
+                    width: 400,
                   ),
                 ),
-                title: "Secured and Fast Payment"),
-            PageViewModel(
-                useScrollView: false,
-                decoration: PageDecoration(
-                  titleTextStyle: Theme.of(context)
-                      .textTheme
-                      .headline4!
-                      .copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: MyTheme.darkGreyColor),
-                  bodyAlignment: Alignment.bottomCenter,
-                  imageFlex: 2,
-                  bodyTextStyle: Theme.of(context)
-                      .textTheme
-                      .headline4!
-                      .copyWith(
-                          fontWeight: FontWeight.w100,
-                          fontSize: 17,
-                          color: Colors.black54),
-                ),
-                body: "Find and cart all your needs by one click",
-                image: Container(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: SafeArea(
-                        child: Image.asset("assets/images/boarding2.png")),
-                  ),
-                ),
-                title: "All Products in One Place"),
-            PageViewModel(
-                useScrollView: false,
-                decoration: PageDecoration(
-                  titleTextStyle: Theme.of(context)
-                      .textTheme
-                      .headline4!
-                      .copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: MyTheme.darkGreyColor),
-                  bodyAlignment: Alignment.bottomCenter,
-                  imageFlex: 2,
-                  bodyTextStyle: Theme.of(context)
-                      .textTheme
-                      .headline4!
-                      .copyWith(
-                          fontWeight: FontWeight.w100,
-                          fontSize: 17,
-                          color: Colors.black54),
-                ),
-                body: "Just few time and your stuff we be in your hands",
-                image: Container(
-                  alignment: Alignment.bottomCenter,
-                  width: double.infinity,
-                  padding: EdgeInsets.all(50),
-                  child: Image.asset("assets/images/boarding3.png"),
-                ),
-                title: "Fast and Secure Delivery"),
-          ],
-        ),
-      ]),
+              ),
+              title: "Fast and Secure Delivery"),
+        ],
+      ),
     );
   }
 }
