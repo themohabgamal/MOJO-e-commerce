@@ -4,6 +4,7 @@ import 'package:e_commerce/widgets/alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login';
@@ -131,11 +132,43 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 16,
+              ),
+              Text(
+                'or continue with',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              TextButton(
+                  onPressed: () {
+                    SignInWithGoogle();
+                  },
+                  child: Image.asset(
+                    "assets/images/google.png",
+                    width: 30,
+                  )),
             ],
           ),
         ),
       ),
     );
+  }
+
+  SignInWithGoogle() async {
+    final GoogleSignInAccount? googleUser =
+        await GoogleSignIn(scopes: <String>["email"]).signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleUser!.authentication;
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken);
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   Future logIn() async {

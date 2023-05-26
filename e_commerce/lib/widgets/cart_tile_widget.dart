@@ -23,8 +23,6 @@ class CartTileWidget extends StatefulWidget {
 }
 
 class _CartTileWidgetState extends State<CartTileWidget> {
-  num quantity = 1;
-  num itemTotal = 0;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -84,7 +82,9 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  quantity++;
+                                  widget.categoryResponseModel.quantity =
+                                      widget.categoryResponseModel.quantity! +
+                                          1;
                                 });
                               },
                               child: Icon(
@@ -93,17 +93,16 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                               ),
                             ),
                             Text(
-                              "${quantity}",
+                              "${widget.categoryResponseModel.quantity}",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20),
                             ),
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  quantity--;
-                                  itemTotal = quantity *
-                                      widget.categoryResponseModel.price!;
-                                  print(itemTotal);
+                                  widget.categoryResponseModel.quantity =
+                                      widget.categoryResponseModel.quantity! -
+                                          1;
                                 });
                               },
                               child: Icon(

@@ -44,6 +44,7 @@ class MyTheme {
           unselectedIconTheme: IconThemeData(size: 30, color: darkGreyColor),
           elevation: 0));
   static final darkTheme = ThemeData(
+      splashColor: Colors.transparent,
       canvasColor: Color.fromARGB(255, 43, 43, 43),
       appBarTheme: AppBarTheme(
         backgroundColor: darkMain,

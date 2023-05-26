@@ -11,6 +11,7 @@ import 'package:e_commerce/models/category_response_rating.dart';
 class CategoryResponseModel {
   CategoryResponseModel({
     this.id,
+    this.quantity,
     this.title,
     this.price,
     this.description,
@@ -21,6 +22,7 @@ class CategoryResponseModel {
 
   CategoryResponseModel.fromJson(dynamic json) {
     id = json['id'];
+    id = json['quantity'];
     title = json['title'];
     price = json['price'];
     description = json['description'];
@@ -31,6 +33,7 @@ class CategoryResponseModel {
   num? id;
   String? title;
   num? price;
+  num? quantity = 1;
   String? description;
   String? category;
   String? image;
@@ -39,6 +42,7 @@ class CategoryResponseModel {
     num? id,
     String? title,
     num? price,
+    num? quantity,
     String? description,
     String? category,
     String? image,
@@ -48,6 +52,7 @@ class CategoryResponseModel {
         id: id ?? this.id,
         title: title ?? this.title,
         price: price ?? this.price,
+        quantity: quantity ?? this.quantity,
         description: description ?? this.description,
         category: category ?? this.category,
         image: image ?? this.image,
@@ -58,6 +63,7 @@ class CategoryResponseModel {
     map['id'] = id;
     map['title'] = title;
     map['price'] = price;
+    map['quantity'] = quantity;
     map['description'] = description;
     map['category'] = category;
     map['image'] = image;

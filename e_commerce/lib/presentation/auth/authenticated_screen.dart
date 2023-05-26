@@ -24,6 +24,9 @@ class _AuthenticatedScreenState extends State<AuthenticatedScreen> {
         children: [
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(color: MyTheme.mainColor),
+            currentAccountPicture: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.network("${user!.photoURL}")),
             accountName: Text(
               "${user?.displayName}",
               style: Theme.of(context)

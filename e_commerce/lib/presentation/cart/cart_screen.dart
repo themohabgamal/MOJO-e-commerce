@@ -23,7 +23,7 @@ class _CartScreenState extends State<CartScreen> {
   num totalCost = 0;
   num subTotal = 0;
   num itemTotal = 0;
-  num delivery = 0;
+  num delivery = 50;
   List<num> totalItems = [];
 
   @override
@@ -191,17 +191,23 @@ class _CartScreenState extends State<CartScreen> {
               Row(
                 children: [
                   Expanded(
-                      child: Container(
-                    alignment: Alignment.center,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: MyTheme.mainColor,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Text("checkout",
-                        style: Theme.of(context).textTheme.headline6?.copyWith(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w600)),
+                      child: GestureDetector(
+                    onTap: () => getTotal(),
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: MyTheme.mainColor,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Text("checkout",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              ?.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w600)),
+                    ),
                   ))
                 ],
               )
@@ -210,5 +216,16 @@ class _CartScreenState extends State<CartScreen> {
         ),
       ),
     );
+  }
+
+  getTotal() {
+    subTotal = 0;
+    totalCost = 0;
+    CartScreen.cartList.forEach((element) {
+      setState(() {
+        subTotal += element.price! * element.quantity!;
+      });
+    });
+    totalCost += subTotal + delivery;
   }
 }

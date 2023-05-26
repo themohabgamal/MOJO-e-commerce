@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:e_commerce/business_logic/wishlist/bloc/wishlist_bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
-import 'package:e_commerce/theming/theme.dart';
 import 'package:flutter/material.dart';
 
 class WishlistTileWidget extends StatefulWidget {
