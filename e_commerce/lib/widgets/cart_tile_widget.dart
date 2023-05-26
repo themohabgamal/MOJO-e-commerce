@@ -3,6 +3,7 @@
 import 'package:e_commerce/business_logic/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce/business_logic/home/bloc/home_bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
+import 'package:e_commerce/presentation/cart/cart_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:flutter/material.dart';
 

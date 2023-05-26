@@ -52,6 +52,7 @@ dependencies:
   flutter_native_splash: ^2.2.18
   flutter_launcher_icons:
   google_sign_in: ^6.1.2
+  google_maps_flutter: ^2.2.8
 
 flutter_icons:
   android: "launcher_icon"

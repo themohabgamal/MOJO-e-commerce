@@ -107,41 +107,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'No Account?',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      widget.clickedRegister();
-                    },
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                        color: MyTheme.mainColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(
-                height: 16,
+                height: 25,
               ),
-              Text(
-                'or continue with',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              Text('or Sign in with google',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      ?.copyWith(fontSize: 16)),
               SizedBox(
                 height: 16,
               ),
@@ -153,6 +126,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     "assets/images/google.png",
                     width: 30,
                   )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('No Account?',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          ?.copyWith(fontSize: 16)),
+                  TextButton(
+                    onPressed: () {
+                      widget.clickedRegister();
+                    },
+                    child: Text('Create An Account',
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                            fontSize: 16,
+                            color: MyTheme.mainColor,
+                            fontWeight: FontWeight.w600)),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

@@ -142,24 +142,23 @@ class _SignupScreenState extends State<SignupScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'Already a member?',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      Text('Already a member?',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              ?.copyWith(fontSize: 16)),
                       TextButton(
                         onPressed: () {
                           widget.clickedLogin!();
                         },
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            color: MyTheme.mainColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        child: Text('Login',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6
+                                ?.copyWith(
+                                    fontSize: 16,
+                                    color: MyTheme.mainColor,
+                                    fontWeight: FontWeight.w600)),
                       ),
                     ],
                   ),

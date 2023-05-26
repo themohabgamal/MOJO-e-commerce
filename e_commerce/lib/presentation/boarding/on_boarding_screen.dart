@@ -12,7 +12,7 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IntroductionScreen(
-        globalBackgroundColor: Color(0xFF3a66dd),
+        globalBackgroundColor: MyTheme.mainColor,
         done: Container(
           width: 100,
           height: 50,
@@ -22,28 +22,26 @@ class OnBoardingScreen extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline6
-                ?.copyWith(color: Colors.white),
+                ?.copyWith(color: Colors.black),
           ),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: MyTheme.orangeColor),
+              borderRadius: BorderRadius.circular(50), color: Colors.white),
         ),
         onDone: () {
           Navigator.pushReplacementNamed(context, NavSwitcher.routeName);
         },
         animationDuration: 10,
-        dotsDecorator: DotsDecorator(
-            activeColor: MyTheme.orangeColor, color: Colors.white),
+        dotsDecorator:
+            DotsDecorator(activeColor: Colors.black, color: Colors.white),
         next: Container(
           width: 50,
           height: 50,
           child: Icon(
             IconlyLight.arrow_right_2,
-            color: Colors.white,
+            color: Colors.black,
           ),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: MyTheme.orangeColor),
+              borderRadius: BorderRadius.circular(50), color: Colors.white),
         ),
         pages: [
           PageViewModel(

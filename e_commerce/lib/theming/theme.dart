@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyTheme {
-  static const mainColor = Color(0xFF0D6EFD);
+  static const mainColor = Color(0xFF0E6CFF);
   static const darkGreyColor = Color(0xFF16182C);
-  static const lighterColor = Color.fromARGB(255, 247, 247, 247);
+  static const lighterColor = Color.fromARGB(255, 229, 229, 229);
   static const darkColor = Color.fromARGB(255, 37, 37, 37);
   static const orangeColor = Color(0xFFFf4c24);
   static const darkMain = Color.fromARGB(255, 26, 26, 26);
@@ -12,14 +12,14 @@ class MyTheme {
   static final lightTheme = ThemeData(
       canvasColor: Colors.white,
       appBarTheme: AppBarTheme(
-        backgroundColor: lighterColor,
+        backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(color: darkColor),
         centerTitle: true,
         titleTextStyle: GoogleFonts.raleway(
             fontSize: 16, fontWeight: FontWeight.w600, color: darkColor),
       ),
-      scaffoldBackgroundColor: lighterColor,
+      scaffoldBackgroundColor: Colors.white,
       textTheme: TextTheme(
         headline6: GoogleFonts.raleway(
             fontSize: 18,

@@ -1,5 +1,6 @@
 import 'package:e_commerce/business_logic/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce/models/category_response_model.dart';
+import 'package:e_commerce/presentation/map/g_map.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/cart_single_product_args.dart';
 import 'package:e_commerce/widgets/cart_single_product_page.dart';
@@ -33,6 +34,7 @@ class _CartScreenState extends State<CartScreen> {
       cartBloc.add(CartLoadEvent());
     }
     super.initState();
+    getTotal();
   }
 
   @override
@@ -123,7 +125,7 @@ class _CartScreenState extends State<CartScreen> {
         },
       ),
       bottomNavigationBar: Container(
-        height: 240,
+        height: MediaQuery.of(context).size.height * 0.3,
         decoration: BoxDecoration(
             color: Theme.of(context).canvasColor,
             borderRadius: BorderRadius.only(
@@ -192,21 +194,31 @@ class _CartScreenState extends State<CartScreen> {
                 children: [
                   Expanded(
                       child: GestureDetector(
-                    onTap: () => getTotal(),
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: MyTheme.mainColor,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Text("checkout",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6
-                              ?.copyWith(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w600)),
+                    onTap: () {
+                      getTotal();
+                      Future.delayed(
+                        Duration(seconds: 1),
+                        () {
+                          Navigator.pushReplacementNamed(
+                              context, MapSample.routeName);
+                        },
+                      );
+                    },
+                    child: Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: MyTheme.mainColor,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Text("Order",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6
+                                ?.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w600)),
+                      ),
                     ),
                   ))
                 ],

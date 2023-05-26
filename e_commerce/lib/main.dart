@@ -7,6 +7,7 @@ import 'package:e_commerce/presentation/boarding/on_boarding_screen.dart';
 import 'package:e_commerce/presentation/home/home_screen.dart';
 import 'package:e_commerce/presentation/home/hot_deals_page.dart';
 import 'package:e_commerce/presentation/home_checker.dart';
+import 'package:e_commerce/presentation/map/g_map.dart';
 import 'package:e_commerce/presentation/wishlist/wish_list_screen.dart';
 import 'package:e_commerce/theming/theme.dart';
 import 'package:e_commerce/widgets/cart_single_product_page.dart';
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
         OnBoardingScreen.routeName: (context) => OnBoardingScreen(),
         HomeChecker.routeName: (context) => HomeChecker(),
         AboutUsScreen.routeName: (context) => AboutUsScreen(),
+        MapSample.routeName: (context) => MapSample(),
       },
       // initialRoute: OnBoardingScreen.routeName,
       initialRoute: isViewed == 0 || isViewed == null
