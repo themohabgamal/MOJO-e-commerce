@@ -52,6 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     _darkModeEnabled == true
                         ? themingCubit.changeToDark()
                         : themingCubit.changeToLight();
+                    _darkModeEnabled = value;
                   });
                 },
               ),

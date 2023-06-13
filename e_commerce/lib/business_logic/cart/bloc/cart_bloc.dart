@@ -14,6 +14,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<CartLoadEvent>(cartLoadEvent);
     on<NavigateBackEvent>(goBackEvent);
     on<GoToCartSingleProductEvent>(goToCartSingleProductEvent);
+    on<Reload>(reload);
   }
 
   FutureOr<void> cartInitialEvent(
@@ -33,5 +34,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       GoToCartSingleProductEvent event, Emitter<CartState> emit) {
     emit(GoToCartSingleProductState(
         categoryResponseModel: event.categoryResponseModel));
+  }
+
+  FutureOr<void> reload(Reload event, Emitter<CartState> emit) {
+    emit(calcNewBalance());
+    emit(CartSuccessState(cartList: CartScreen.cartList));
   }
 }

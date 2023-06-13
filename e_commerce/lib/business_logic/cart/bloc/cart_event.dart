@@ -25,3 +25,5 @@ class GetNewSubTotalEvent extends CartEvent {
   num quantity;
   GetNewSubTotalEvent({required this.quantity});
 }
+
+class Reload extends CartEvent {}

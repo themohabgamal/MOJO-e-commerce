@@ -25,3 +25,5 @@ class GetNewSubTotalState extends CartActionState {
   num quantity;
   GetNewSubTotalState({required this.quantity});
 }
+
+class calcNewBalance extends CartActionState {}

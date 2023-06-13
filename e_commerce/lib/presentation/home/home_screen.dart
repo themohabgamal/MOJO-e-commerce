@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     "men's clothing",
     "women's clothing"
   ];
+
   int current = 0;
   String category = "electronics";
   @override
@@ -212,7 +213,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         ],
                       ),
-                    )
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      "Clothes",
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                    SizedBox(height: 20),
+                    SizedBox(
+                        height: 250,
+                        child: CustomizedApiHomeWidget(
+                            homeBloc: homeBloc, category: "men's clothing")),
+                    SizedBox(height: 10),
                   ]),
             ),
           ),

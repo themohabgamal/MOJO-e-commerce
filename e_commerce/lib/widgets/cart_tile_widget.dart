@@ -87,6 +87,7 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                                       widget.categoryResponseModel.quantity! +
                                           1;
                                 });
+                                widget.cartBloc.add(Reload());
                               },
                               child: Icon(
                                 Icons.add,
@@ -105,6 +106,7 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                                       widget.categoryResponseModel.quantity! -
                                           1;
                                 });
+                                widget.cartBloc.add(Reload());
                               },
                               child: Icon(
                                 Icons.remove,
