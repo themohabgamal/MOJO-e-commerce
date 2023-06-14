@@ -162,10 +162,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 20),
                     SizedBox(
-                        height: 250,
+                        height: MediaQuery.of(context).size.height * 0.36,
                         child: CustomizedApiHomeWidget(
                             homeBloc: homeBloc, category: category)),
-                    SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -221,10 +220,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 20),
                     SizedBox(
-                        height: 250,
+                        height: MediaQuery.of(context).size.height * 0.35,
                         child: CustomizedApiHomeWidget(
                             homeBloc: homeBloc, category: "men's clothing")),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                   ]),
             ),
           ),

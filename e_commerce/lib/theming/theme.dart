@@ -35,6 +35,16 @@ class MyTheme {
             color: MyTheme.darkColor,
             fontWeight: FontWeight.w500,
             decoration: TextDecoration.none),
+        subtitle2: GoogleFonts.raleway(
+            fontSize: 22,
+            color: MyTheme.darkColor,
+            fontWeight: FontWeight.w500,
+            decoration: TextDecoration.none),
+        subtitle1: GoogleFonts.raleway(
+            fontSize: 18,
+            color: MyTheme.darkColor,
+            fontWeight: FontWeight.w400,
+            decoration: TextDecoration.none),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: Colors.white70,
@@ -67,6 +77,16 @@ class MyTheme {
             fontSize: 24,
             color: Colors.white,
             fontWeight: FontWeight.w500,
+            decoration: TextDecoration.none),
+        subtitle2: GoogleFonts.raleway(
+            fontSize: 22,
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+            decoration: TextDecoration.none),
+        subtitle1: GoogleFonts.raleway(
+            fontSize: 16,
+            color: Colors.white,
+            fontWeight: FontWeight.w400,
             decoration: TextDecoration.none),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(

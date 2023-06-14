@@ -36,7 +36,7 @@ class CategoryTileWidget extends StatelessWidget {
         padding: EdgeInsets.all(5),
         margin: EdgeInsets.all(7),
         width: 180,
-        height: 220,
+        height: MediaQuery.of(context).size.height * 0.4,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Theme.of(context).canvasColor),

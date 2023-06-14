@@ -245,7 +245,7 @@ class _CartScreenState extends State<CartScreen> {
                                   Future.delayed(
                                     Duration(seconds: 1),
                                     () {
-                                      Navigator.pushReplacementNamed(
+                                      Navigator.pushNamed(
                                           context, MapSample.routeName);
                                     },
                                   );
@@ -290,6 +290,9 @@ class _CartScreenState extends State<CartScreen> {
     CartScreen.cartList.forEach((element) {
       setState(() {
         subTotal += element.price! * element.quantity!;
+        if (subTotal.toString().length > 7) {
+          subTotal.toString().substring(0, 7);
+        }
       });
     });
     totalCost += subTotal + delivery;

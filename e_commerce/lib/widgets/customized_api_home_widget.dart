@@ -17,7 +17,7 @@ class CustomizedApiHomeWidget extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 250,
+          height: 260,
           width: double.infinity,
           child: FutureBuilder(
             future: HomeCategoryRepo.getSpeceficCategory(category),

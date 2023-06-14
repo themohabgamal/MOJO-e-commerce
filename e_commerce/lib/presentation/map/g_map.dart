@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:e_commerce/presentation/cart/cart_screen.dart';
+import 'package:e_commerce/theming/theme.dart';
+import 'package:e_commerce/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -40,22 +43,62 @@ class MapSampleState extends State<MapSample> {
           markers: markers),
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40.0),
-        child: FloatingActionButton(
-          onPressed: () {
-            getUserCurrentLocation().then((value) {
-              print(
-                  "latitude ${value.latitude.toString()} and longitude is ${value.longitude.toString()}");
-              markers.add(Marker(
-                  markerId: MarkerId("2"),
-                  position: LatLng(value.latitude, value.longitude),
-                  infoWindow: InfoWindow(title: "My current location")));
-              CameraPosition camPosition = CameraPosition(
-                  zoom: 15, target: LatLng(value.latitude, value.longitude));
-              navigateToCurrentLocation(camPosition);
-              setState(() {});
-            });
-          },
-          child: Icon(Icons.my_location),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 50),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton(
+                style: ButtonStyle(
+                    padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40))),
+                    backgroundColor:
+                        MaterialStateProperty.all(MyTheme.mainColor)),
+                onPressed: () {
+                  CartScreen.cartList.clear();
+
+                  Navigator.pop(context);
+                  Alert.showAlert(context, "assets/animations/order.json",
+                      "Order Was Placed Successfully");
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.done,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "Save And Order",
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    )
+                  ],
+                ),
+              ),
+              FloatingActionButton(
+                backgroundColor: MyTheme.mainColor,
+                onPressed: () {
+                  getUserCurrentLocation().then((value) {
+                    print(
+                        "latitude ${value.latitude.toString()} and longitude is ${value.longitude.toString()}");
+                    markers.add(Marker(
+                        markerId: MarkerId("2"),
+                        position: LatLng(value.latitude, value.longitude),
+                        infoWindow: InfoWindow(title: "My current location")));
+                    CameraPosition camPosition = CameraPosition(
+                        zoom: 15,
+                        target: LatLng(value.latitude, value.longitude));
+                    navigateToCurrentLocation(camPosition);
+                    setState(() {});
+                  });
+                },
+                child: Icon(Icons.my_location),
+              ),
+            ],
+          ),
         ),
       ),
     );

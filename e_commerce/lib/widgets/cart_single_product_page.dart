@@ -18,7 +18,8 @@ class CartSingleProductPage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(IconlyLight.arrow_left_2, color: Colors.black),
+          icon: Icon(IconlyLight.arrow_left_2,
+              color: Theme.of(context).textTheme.headline6?.color),
           onPressed: () {
             if (args.wishlistBloc != null) {
               args.wishlistBloc?.add(WishlistNavigateBackEvent());
@@ -39,14 +40,15 @@ class CartSingleProductPage extends StatelessWidget {
                 Text(
                   "${args.categoryResponseModel.title}",
                   style: Theme.of(context).textTheme.headline4?.copyWith(
-                      color: Colors.black, fontWeight: FontWeight.w600),
+                      color: Theme.of(context).textTheme.headline6?.color,
+                      fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 10),
                 Text(
                   "${args.categoryResponseModel.category}",
                   style: Theme.of(context).textTheme.headline6?.copyWith(
                       fontSize: 22,
-                      color: MyTheme.darkGreyColor,
+                      color: Theme.of(context).textTheme.headline6?.color,
                       fontWeight: FontWeight.w500),
                 ),
                 SizedBox(height: 10),
@@ -61,21 +63,20 @@ class CartSingleProductPage extends StatelessWidget {
                   "\$ ${args.categoryResponseModel.price}",
                   style: Theme.of(context).textTheme.subtitle2?.copyWith(
                       fontSize: 28,
-                      color: Colors.black,
+                      color: Theme.of(context).textTheme.headline6?.color,
                       fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 10),
                 ReadMoreText(
                   "${args.categoryResponseModel.description}",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1
-                      ?.copyWith(color: MyTheme.darkGreyColor),
+                  style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                      fontSize: 16,
+                      color: Theme.of(context).textTheme.headline6?.color),
                   trimLines: 4,
                   colorClickableText: MyTheme.mainColor,
                   lessStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
                       color: MyTheme.mainColor),
                   trimMode: TrimMode.Line,
                   trimCollapsedText: ' Show more',

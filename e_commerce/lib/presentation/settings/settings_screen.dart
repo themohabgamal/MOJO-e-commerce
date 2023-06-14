@@ -1,6 +1,7 @@
 import 'package:e_commerce/business_logic/theming/cubit/theming_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -10,11 +11,37 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _notificationsEnabled = true;
   bool _darkModeEnabled = false;
+  @override
+  void initState() {
+    super.initState();
+    _loadTheme();
+  }
+
+  void _loadTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isDarkMode = prefs.getBool('isDarkMode') ?? false;
+    setState(() {
+      _darkModeEnabled = isDarkMode;
+    });
+  }
+
+  void _toggleTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _darkModeEnabled = !_darkModeEnabled;
+      prefs.setBool('isDarkMode', _darkModeEnabled);
+    });
+  }
+
   String _selectedLanguage = 'English';
 
   @override
   Widget build(BuildContext context) {
     ThemingCubit themingCubit = BlocProvider.of<ThemingCubit>(context);
+    final theme = _darkModeEnabled
+        ? themingCubit.changeToDark()
+        : themingCubit.changeToLight();
+    ;
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -47,13 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               trailing: Switch(
                 value: _darkModeEnabled,
                 onChanged: (value) {
-                  _darkModeEnabled = value;
-                  setState(() {
-                    _darkModeEnabled == true
-                        ? themingCubit.changeToDark()
-                        : themingCubit.changeToLight();
-                    _darkModeEnabled = value;
-                  });
+                  _toggleTheme();
                 },
               ),
             ),
